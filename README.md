@@ -9,9 +9,9 @@ Para ejecutar el proyecto se requiere [Maven](https://maven.apache.org/install.h
 Para crear la base de datos, nos paramos en la carpeta "sql" y elecutamos en la consola:
 
 ```
-mysql -u <usuario> -p < scriptAgenda.sql
+mysql -u usuario -p < scriptAgenda.sql
 ```
-Donde <usuario> es el usuario deseado. Generalmente "root"
+Donde "usuario" es el usuario deseado. Generalmente "root"
 
 ## Usar Eclipse IDE
 Para usar el Eclipse IDE se debe ejecutar en la consola:
