@@ -169,4 +169,6 @@ upload/
 ###Jasper###
 *.jasper
 
+/.idea
+
 # End of https://www.gitignore.io/api/java,maven,eclipse,intellij
