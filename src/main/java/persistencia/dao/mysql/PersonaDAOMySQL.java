@@ -17,7 +17,7 @@ import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
 
-public class PersonaDAOMySQL extends DAOBaseMySQL implements PersonaDAO 
+public class PersonaDAOMySQL implements PersonaDAO 
 {
 	private static Table<Record> PERSONAS = table("personas");
 	private static Field<Integer> IDPERSONA = field("idPersona", Integer.class);
