@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
-public class Vista
+public class MainView
 {
 	private JFrame frame;
 	private JTable tablaPersonas;
@@ -15,9 +15,9 @@ public class Vista
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Telï¿½fono"};
 
-	public Vista() 
+	public MainView() 
 	{
 		super();
 		initialize();

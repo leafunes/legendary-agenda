@@ -8,26 +8,26 @@ import persistencia.dao.mysql.PersonaDAOImpl;
 
 public class Agenda 
 {
-	private PersonaDAO persona;	
+	private PersonaDAO personaDao;	
 	
 	public Agenda()
 	{
-		persona = new PersonaDAOImpl();
+		personaDao = new PersonaDAOImpl();
 	}
 	
 	public void agregarPersona(PersonaDTO nuevaPersona)
 	{
-		persona.insert(nuevaPersona);
+		personaDao.insert(nuevaPersona);
 	}
 
 	public void borrarPersona(PersonaDTO persona_a_eliminar) 
 	{
-		persona.delete(persona_a_eliminar);
+		personaDao.delete(persona_a_eliminar);
 	}
 	
 	public List<PersonaDTO> obtenerPersonas()
 	{
-		return persona.readAll();		
+		return personaDao.readAll();		
 	}
 	
 }

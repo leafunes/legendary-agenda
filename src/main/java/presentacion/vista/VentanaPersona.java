@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.Controlador;
+import presentacion.controlador.MainViewController;
 
 public class VentanaPersona extends JFrame 
 {
@@ -17,9 +17,9 @@ public class VentanaPersona extends JFrame
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
 	private JButton btnAgregarPersona;
-	private Controlador controlador;
+	private MainViewController controlador;
 
-	public VentanaPersona(Controlador controlador) 
+	public VentanaPersona(MainViewController controlador) 
 	{
 		super();
 		this.controlador = controlador;

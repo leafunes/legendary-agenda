@@ -1,8 +1,8 @@
 package main;
 
 import modelo.Agenda;
-import presentacion.controlador.Controlador;
-import presentacion.vista.Vista;
+import presentacion.controlador.MainViewController;
+import presentacion.vista.MainView;
 
 
 public class Main 
@@ -10,9 +10,9 @@ public class Main
 
 	public static void main(String[] args) 
 	{
-		Vista vista = new Vista();
+		MainView vista = new MainView();
 		Agenda modelo = new Agenda();
-		Controlador controlador = new Controlador(vista, modelo);
+		MainViewController controlador = new MainViewController(vista, modelo);
 		controlador.inicializar();
 	}
 }

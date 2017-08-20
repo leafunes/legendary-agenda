@@ -6,17 +6,17 @@ import java.util.List;
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
-import presentacion.vista.Vista;
+import presentacion.vista.MainView;
 import dto.PersonaDTO;
 
-public class Controlador implements ActionListener
+public class MainViewController implements ActionListener
 {
-		private Vista vista;
+		private MainView vista;
 		private List<PersonaDTO> personas_en_tabla;
 		private VentanaPersona ventanaPersona; 
 		private Agenda agenda;
 		
-		public Controlador(Vista vista, Agenda agenda)
+		public MainViewController(MainView vista, Agenda agenda)
 		{
 			this.vista = vista;
 			this.vista.getBtnAgregar().addActionListener(this);
