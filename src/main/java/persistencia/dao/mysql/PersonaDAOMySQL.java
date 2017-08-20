@@ -21,8 +21,8 @@ public class PersonaDAOMySQL implements PersonaDAO
 {
 	private static Table<Record> PERSONAS = table("personas");
 	private static Field<Integer> IDPERSONA = field("idPersona", Integer.class);
-	private static Field<String> NOMBRE = field("Nombre", String.class);
-	private static Field<String> TELEFONO = field("Telefono", String.class);
+	private static Field<String> NOMBRE = field("nombrePersona", String.class);
+	private static Field<String> TELEFONO = field("telefonoPersona", String.class);
 	
 	private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 	
