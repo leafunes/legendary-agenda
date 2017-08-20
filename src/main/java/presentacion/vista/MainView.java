@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
 
 public class MainView
 {
@@ -15,7 +17,7 @@ public class MainView
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Tel�fono"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
 
 	public MainView() 
 	{
@@ -26,18 +28,18 @@ public class MainView
 
 	private void initialize() 
 	{
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame = new JFrame("Legendary Agenda");
+		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 262);
+		panel.setBounds(0, 0, 798, 575);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 414, 182);
+		spPersonas.setBounds(0, 0, 798, 524);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -50,21 +52,21 @@ public class MainView
 		
 		spPersonas.setViewportView(tablaPersonas);
 		
-		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(10, 228, 89, 23);
-		panel.add(btnAgregar);
-		
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(109, 228, 89, 23);
-		panel.add(btnEditar);
+		btnReporte = new JButton("Reporte");
+		btnReporte.setBounds(641, 538, 95, 25);
+		panel.add(btnReporte);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(208, 228, 89, 23);
+		btnBorrar.setBounds(230, 538, 95, 25);
 		panel.add(btnBorrar);
 		
-		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(307, 228, 89, 23);
-		panel.add(btnReporte);
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.setBounds(448, 538, 95, 25);
+		panel.add(btnEditar);
+		
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBounds(40, 538, 95, 25);
+		panel.add(btnAgregar);
 	}
 	
 	public void show()
