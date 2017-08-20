@@ -3,7 +3,7 @@ package modelo;
 import java.util.List;
 import dto.PersonaDTO;
 import persistencia.dao.interfaz.PersonaDAO;
-import persistencia.dao.mysql.PersonaDAOImpl;
+import persistencia.dao.mysql.PersonaDAOMySQL;
 
 
 public class Agenda 
@@ -12,7 +12,7 @@ public class Agenda
 	
 	public Agenda()
 	{
-		personaDao = new PersonaDAOImpl();
+		personaDao = new PersonaDAOMySQL();
 	}
 	
 	public void agregarPersona(PersonaDTO nuevaPersona)

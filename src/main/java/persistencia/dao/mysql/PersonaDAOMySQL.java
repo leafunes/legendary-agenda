@@ -10,7 +10,7 @@ import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
 
-public class PersonaDAOImpl implements PersonaDAO
+public class PersonaDAOMySQL implements PersonaDAO
 {
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
