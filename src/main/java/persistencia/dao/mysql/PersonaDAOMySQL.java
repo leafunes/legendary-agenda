@@ -1,91 +1,72 @@
 package persistencia.dao.mysql;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jooq.DSLContext;
+import org.jooq.Field;
+import org.jooq.Record;
+import org.jooq.Result;
+import org.jooq.SQLDialect;
+import org.jooq.Table;
+import org.jooq.impl.DSL;
+
+import static org.jooq.impl.DSL.*;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
 
-public class PersonaDAOMySQL implements PersonaDAO
+public class PersonaDAOMySQL extends DAOBaseMySQL implements PersonaDAO 
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
-	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
-	private static final String readall = "SELECT * FROM personas";
-	private static final Conexion conexion = Conexion.getConexion();
+	private static Table<Record> PERSONAS = table("personas");
+	private static Field<Integer> IDPERSONA = field("idPersona", Integer.class);
+	private static Field<String> NOMBRE = field("Nombre", String.class);
+	private static Field<String> TELEFONO = field("Telefono", String.class);
+	
+	private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 	
 	public boolean insert(PersonaDTO persona)
-	{
-		PreparedStatement statement;
-		try 
-		{
-			statement = conexion.getSQLConexion().prepareStatement(insert);
-			statement.setInt(1, persona.getIdPersona());
-			statement.setString(2, persona.getNombre());
-			statement.setString(3, persona.getTelefono());
-			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
-				return true;
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally //Se ejecuta siempre
-		{
-			conexion.cerrarConexion();
-		}
-		return false;
+	{	
+		
+		int query = create.insertInto(PERSONAS, IDPERSONA, NOMBRE, TELEFONO)
+				.values(persona.getIdPersona(), persona.getNombre(), persona.getTelefono())
+				.execute();
+		
+		return query == 1;
 	}
 	
 	public boolean delete(PersonaDTO persona_a_eliminar)
 	{
-		PreparedStatement statement;
-		int chequeoUpdate=0;
-		try 
-		{
-			statement = conexion.getSQLConexion().prepareStatement(delete);
-			statement.setString(1, Integer.toString(persona_a_eliminar.getIdPersona()));
-			chequeoUpdate = statement.executeUpdate();
-			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
-				return true;
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally //Se ejecuta siempre
-		{
-			conexion.cerrarConexion();
-		}
-		return false;
+		
+		int query = create.deleteFrom(PERSONAS)
+				.where(IDPERSONA.eq(persona_a_eliminar.getIdPersona()))
+				.execute();
+		
+		return query == 1;
 	}
 	
 	public List<PersonaDTO> readAll()
 	{
-		PreparedStatement statement;
-		ResultSet resultSet; //Guarda el resultado de la query
-		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
-		try 
-		{
-			statement = conexion.getSQLConexion().prepareStatement(readall);
-			resultSet = statement.executeQuery();
+
+		List<PersonaDTO> toReturn = new ArrayList<>();
+		
+		Result<Record> res = create.select()
+									.from(PERSONAS)
+									.fetch();
+		
+		for(Record r : res){
+			int id = r.getValue(IDPERSONA);
+			String nombre = r.getValue(NOMBRE);
+			String tel = r.getValue(TELEFONO);
 			
-			while(resultSet.next())
-			{
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono")));
-			}
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
+			PersonaDTO toAdd = new PersonaDTO(id, nombre, tel);
+			
+			toReturn.add(toAdd);
+			
 		}
-		finally //Se ejecuta siempre
-		{
-			conexion.cerrarConexion();
-		}
-		return personas;
+		
+		return toReturn;
+		
 	}
 }
