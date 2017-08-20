@@ -10,20 +10,18 @@ import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.MainViewController;
 
-public class VentanaPersona extends JFrame 
+public class AgregaPersonaView extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
 	private JButton btnAgregarPersona;
-	private MainViewController controlador;
 
-	public VentanaPersona(MainViewController controlador) 
+	public AgregaPersonaView() 
 	{
 		super();
 		setTitle("Agregar Contacto");
-		this.controlador = controlador;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 343, 183);
@@ -56,7 +54,7 @@ public class VentanaPersona extends JFrame
 		txtTelefono.setColumns(10);
 		
 		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.addActionListener(this.controlador);
+		//btnAgregarPersona.addActionListener(this.controlador);
 		btnAgregarPersona.setBounds(234, 123, 95, 23);
 		panel.add(btnAgregarPersona);
 		

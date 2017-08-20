@@ -5,25 +5,23 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
-import presentacion.vista.VentanaPersona;
+import presentacion.vista.AgregaPersonaView;
 import presentacion.vista.MainView;
 import dto.PersonaDTO;
 
-public class MainViewController implements ActionListener
-{
+public class MainViewController{
 		private MainView vista;
-		private List<PersonaDTO> personas_en_tabla;
-		private VentanaPersona ventanaPersona; 
+		private List<PersonaDTO> personasTabla;
+		private AgregaPersonaView ventanaPersona; 
 		private Agenda agenda;
 		
 		public MainViewController(MainView vista, Agenda agenda)
 		{
 			this.vista = vista;
-			this.vista.getBtnAgregar().addActionListener(this);
-			this.vista.getBtnBorrar().addActionListener(this);
-			this.vista.getBtnReporte().addActionListener(this);
+			this.vista.getBtnAgregar().addActionListener(e -> agregarContacto());
+			this.vista.getBtnBorrar().addActionListener(e -> borrarContacto());
+			this.vista.getBtnReporte().addActionListener(e -> mostrarReporte());
 			this.agenda = agenda;
-			this.personas_en_tabla = null;
 		}
 		
 		public void inicializar()
@@ -34,47 +32,52 @@ public class MainViewController implements ActionListener
 		private void llenarTabla()
 		{
 			this.vista.getModelPersonas().setRowCount(0); //Para vaciar la tabla
-			this.vista.getModelPersonas().setColumnCount(0);
-			this.vista.getModelPersonas().setColumnIdentifiers(this.vista.getNombreColumnas());
 			
-			this.personas_en_tabla = agenda.obtenerPersonas();
-			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
-			{
-				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono()};
-				this.vista.getModelPersonas().addRow(fila);
+			this.personasTabla = agenda.obtenerPersonas();
+			
+			for(PersonaDTO p : this.personasTabla){
+				this.vista.getModelPersonas().addRow(toRow(p));
 			}
 			this.vista.show();
 		}
 		
-		public void actionPerformed(ActionEvent e) 
-		{
-			if(e.getSource() == this.vista.getBtnAgregar())
-			{
-				this.ventanaPersona = new VentanaPersona(this);
+		private void agregarContacto(){
+			this.ventanaPersona = new AgregaPersonaView();
+			this.ventanaPersona.getBtnAgregarPersona().addActionListener(e -> crearContacto());
+		}
+		
+		private void borrarContacto(){
+			int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+			
+			for (int fila : filas_seleccionadas){
+				this.agenda.borrarPersona(this.personasTabla.get(fila));
 			}
-			else if(e.getSource() == this.vista.getBtnBorrar())
-			{
-				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
-				for (int fila:filas_seleccionadas)
-				{
-					this.agenda.borrarPersona(this.personas_en_tabla.get(fila));
-				}
-				
-				this.llenarTabla();
-				
-			}
-			else if(e.getSource() == this.vista.getBtnReporte())
-			{				
-				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
-				reporte.mostrar();				
-			}
-			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
-			{
-				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
-				this.agenda.agregarPersona(nuevaPersona);
-				this.llenarTabla();
-				this.ventanaPersona.dispose();
-			}
+			
+			this.llenarTabla();
+		}
+		
+		private void mostrarReporte(){
+			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
+			reporte.mostrar();
+		}
+		
+		private void crearContacto(){
+			this.agenda.agregarPersona(getNewPersonaDTO());
+			this.llenarTabla();
+			this.ventanaPersona.dispose();
+		}
+		
+
+		private Object[] toRow(PersonaDTO p){
+			Object[] fila = {p.getNombre(), p.getTelefono()};
+			
+			return fila;
+		}
+		
+		private PersonaDTO getNewPersonaDTO(){
+			PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+			
+			return nuevaPersona;
 		}
 
 }
