@@ -17,6 +17,7 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 	
 	protected List<String> columnas;
+	protected List<T> rows;
 	protected TableColumnModel colModel;
 	
 	
@@ -25,6 +26,7 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 		super(new Object[]{}, 0);
 		
 		columnas = new ArrayList<>();
+		rows = new ArrayList<>();
 		colModel = new DefaultTableColumnModel();
 		
 		
@@ -54,7 +56,12 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 	}
 	
 	public void addRow(T t){
+		this.rows.add(t);
 		this.addRow(toRow(t));
+	}
+	
+	public T getRow(int i){
+		return this.rows.get(i);
 	}
 	
 	public TableColumnModel getTableColumnModel(){

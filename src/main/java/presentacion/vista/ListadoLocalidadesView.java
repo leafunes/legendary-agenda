@@ -16,7 +16,6 @@ public class ListadoLocalidadesView extends JDialog {
 	private JPanel contentPane;
 	private JTable table;
 	private JButton btnAgregar;
-	private JButton btnEditar;
 	private JButton btnBorrar;
 
 	
@@ -33,15 +32,11 @@ public class ListadoLocalidadesView extends JDialog {
 		contentPane.setLayout(null);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(12, 238, 117, 25);
+		btnAgregar.setBounds(60, 238, 117, 25);
 		contentPane.add(btnAgregar);
 		
-		btnEditar = new JButton("Editar");
-		btnEditar.setBounds(168, 238, 117, 25);
-		contentPane.add(btnEditar);
-		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(319, 238, 117, 25);
+		btnBorrar.setBounds(257, 238, 117, 25);
 		contentPane.add(btnBorrar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -60,11 +55,6 @@ public class ListadoLocalidadesView extends JDialog {
 
 	public JButton getBtnAgregar() {
 		return btnAgregar;
-	}
-
-
-	public JButton getBtnEditar() {
-		return btnEditar;
 	}
 
 

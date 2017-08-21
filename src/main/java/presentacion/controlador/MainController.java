@@ -73,9 +73,6 @@ public class MainController{
 			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerAll());
 			reporte.mostrar();
 		}
-		
-		private void showLocalidadesList(){
-			
-		}
+
 
 }

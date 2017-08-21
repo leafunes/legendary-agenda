@@ -1,5 +1,7 @@
 package presentacion.controlador;
 
+import modelo.LocalidadService;
+import presentacion.table.LocalidadesTableModel;
 import presentacion.vista.ListadoLocalidadesView;
 
 public class ListadoLocalidadesController {
@@ -8,6 +10,9 @@ public class ListadoLocalidadesController {
 	
 	private ListadoLocalidadesView view;
 	private AgregaLocalidadController agregaLocController;
+	private LocalidadesTableModel locTableModel;
+	
+	private LocalidadService localidadService = LocalidadService.getService();
 	
 	public static ListadoLocalidadesController getController(){
 		if(instancia == null)
@@ -18,17 +23,45 @@ public class ListadoLocalidadesController {
 	private ListadoLocalidadesController(){
 		view = new ListadoLocalidadesView();
 		agregaLocController = new AgregaLocalidadController();
+		locTableModel = new LocalidadesTableModel();
 		
-		view.getBtnAgregar().addActionListener(e -> agregarContacto());
+		view.getBtnAgregar().addActionListener(e -> agregarLocalidad());
+		view.getBtnBorrar().addActionListener(e -> borrarLocalidad());
 		
 	}
 	
-	private void agregarContacto(){
+	private void agregarLocalidad(){
 		agregaLocController.showView();
+		llenarTabla();
+	}
+	
+	private void borrarLocalidad(){
+		
+		int[] filas_seleccionadas = this.view.getTable().getSelectedRows();
+		
+		for (int fila : filas_seleccionadas){
+			this.localidadService.borrar(this.locTableModel.getRow(fila));
+		}
+		
+		this.llenarTabla();
+		
 	}
 	
 	public void showView(){
+		
+		this.llenarTabla();
+		
+		this.view.getTable().setModel(locTableModel);
+		this.view.getTable().setColumnModel(locTableModel.getTableColumnModel());
+		this.view.getTable().getTableHeader().setReorderingAllowed(false);
+		
 		view.setVisible(true);
+	}
+	
+	private void llenarTabla(){
+		this.locTableModel.clean();
+		
+		this.locTableModel.addRows(localidadService.obtenerAll());
 	}
 	
 	public void closeView(){
