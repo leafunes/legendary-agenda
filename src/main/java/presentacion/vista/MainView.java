@@ -8,18 +8,32 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class MainView
 {
+	private static MainView instance;
+	
 	private JFrame frame;
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
-	//private DefaultTableModel modelPersonas;
-	//private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
+	private JMenuBar menuBar;
+	private JMenu mnEditar;
+	private JMenuItem mntmLocalidades;
+	private JMenuItem mntmTipoContacto;
+	
+	public static MainView getView(){
+		if(instance == null)
+			instance = new MainView();
+		return instance;
 
-	public MainView() 
+	}
+
+	private MainView() 
 	{
 		super();
 		initialize();
@@ -39,32 +53,40 @@ public class MainView
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(0, 0, 798, 524);
+		spPersonas.setBounds(0, 0, 798, 504);
 		panel.add(spPersonas);
 		
-		//modelPersonas = new DefaultTableModel(null,nombreColumnas);
-		//tablaPersonas = new JTable(modelPersonas);
 		tablaPersonas = new JTable();
-		
-
 		
 		spPersonas.setViewportView(tablaPersonas);
 		
 		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(641, 538, 95, 25);
+		btnReporte.setBounds(641, 516, 95, 25);
 		panel.add(btnReporte);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(230, 538, 95, 25);
+		btnBorrar.setBounds(229, 516, 95, 25);
 		panel.add(btnBorrar);
 		
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(448, 538, 95, 25);
+		btnEditar.setBounds(448, 516, 95, 25);
 		panel.add(btnEditar);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(40, 538, 95, 25);
+		btnAgregar.setBounds(40, 516, 95, 25);
 		panel.add(btnAgregar);
+		
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		mnEditar = new JMenu("Editar");
+		menuBar.add(mnEditar);
+		
+		mntmLocalidades = new JMenuItem("Localidades");
+		mnEditar.add(mntmLocalidades);
+		
+		mntmTipoContacto = new JMenuItem("Tipos Contacto");
+		mnEditar.add(mntmTipoContacto);
 	}
 	
 	public void show()
@@ -87,18 +109,15 @@ public class MainView
 		return btnReporte;
 	}
 	
-//	public DefaultTableModel getModelPersonas() 
-//	{
-//		return modelPersonas;
-//	}
 	
 	public JTable getTablaPersonas()
 	{
 		return tablaPersonas;
 	}
 
-//	public String[] getNombreColumnas() 
-//	{
-//		return nombreColumnas;
-//	}
+
+	public JMenuItem getMntmLocalidades() {
+		return mntmLocalidades;
+	}
+
 }

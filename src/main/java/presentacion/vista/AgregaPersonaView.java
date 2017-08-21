@@ -1,16 +1,19 @@
 package presentacion.vista;
 
 
+import java.awt.Dialog.ModalExclusionType;
+
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.MainViewController;
+import presentacion.controlador.MainController;
 
-public class AgregaPersonaView extends JFrame 
+public class AgregaPersonaView extends JDialog 
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -24,6 +27,8 @@ public class AgregaPersonaView extends JFrame
 		setTitle("Agregar Contacto");
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setModal(true);
+		
 		setBounds(100, 100, 343, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,11 +59,9 @@ public class AgregaPersonaView extends JFrame
 		txtTelefono.setColumns(10);
 		
 		btnAgregarPersona = new JButton("Agregar");
-		//btnAgregarPersona.addActionListener(this.controlador);
 		btnAgregarPersona.setBounds(234, 123, 95, 23);
 		panel.add(btnAgregarPersona);
 		
-		this.setVisible(true);
 	}
 	
 	public JTextField getTxtNombre() 

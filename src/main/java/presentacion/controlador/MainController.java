@@ -10,21 +10,27 @@ import presentacion.vista.AgregaPersonaView;
 import presentacion.vista.MainView;
 import dto.PersonaDTO;
 
-public class MainViewController{
+public class MainController{
 		private MainView vista;
-		private List<PersonaDTO> personasTabla;
-		private AgregaPersonaView ventanaPersona; 
+		private List<PersonaDTO> personasTabla; 
 		private PersonaService agenda;
 		private PersonasTableModel tableModel;
 		
-		public MainViewController(MainView vista, PersonaService agenda)
+		private AgregaPersonaController agregaPersonaController;
+		private MainViewMenuController menuController;
+		
+		public MainController(MainView vista, PersonaService agenda)
 		{
 			this.vista = vista;
 			this.tableModel = new PersonasTableModel();
+			this.agregaPersonaController = new AgregaPersonaController();
+			this.menuController = new MainViewMenuController();
+			menuController.init();
 			
 			this.vista.getBtnAgregar().addActionListener(e -> agregarContacto());
 			this.vista.getBtnBorrar().addActionListener(e -> borrarContacto());
 			this.vista.getBtnReporte().addActionListener(e -> mostrarReporte());
+			
 			this.agenda = agenda;
 		}
 		
@@ -49,8 +55,8 @@ public class MainViewController{
 		}
 		
 		private void agregarContacto(){
-			this.ventanaPersona = new AgregaPersonaView();
-			this.ventanaPersona.getBtnAgregarPersona().addActionListener(e -> crearContacto());
+			this.agregaPersonaController.showView();
+			this.llenarTabla();
 		}
 		
 		private void borrarContacto(){
@@ -68,17 +74,8 @@ public class MainViewController{
 			reporte.mostrar();
 		}
 		
-		private void crearContacto(){
-			this.agenda.agregar(getNewPersonaDTO());
-			this.llenarTabla();
-			this.ventanaPersona.dispose();
-		}
-		
-
-		private PersonaDTO getNewPersonaDTO(){
-			PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+		private void showLocalidadesList(){
 			
-			return nuevaPersona;
 		}
 
 }
