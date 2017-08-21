@@ -21,12 +21,23 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOMySQL implements LocalidadDAO{
 	
+	private static LocalidadDAOMySQL instancia;
+	
 	private static Table<Record> LOCALIDADES = table("localidades");
 	private static Field<Integer> IDLOCALIDAD = field("idLocalidad", Integer.class);
 	private static Field<String> NOMBRE = field("nombreLocalidad", String.class);
 	
 	private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 	
+	private LocalidadDAOMySQL(){
+		
+	}
+	
+	public static LocalidadDAOMySQL getDAO(){
+		if(instancia == null)
+			instancia = new LocalidadDAOMySQL();
+		return instancia;
+	}
 
 	@Override
 	public boolean insert(LocalidadDTO toInsert) {

@@ -42,7 +42,7 @@ public class MainViewController{
 		{
 			this.tableModel.clean();
 			
-			this.personasTabla = agenda.obtenerPersonas();
+			this.personasTabla = agenda.obtenerAll();
 			this.tableModel.addRows(personasTabla);
 			
 
@@ -57,19 +57,19 @@ public class MainViewController{
 			int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 			
 			for (int fila : filas_seleccionadas){
-				this.agenda.borrarPersona(this.personasTabla.get(fila));
+				this.agenda.borrar(this.personasTabla.get(fila));
 			}
 			
 			this.llenarTabla();
 		}
 		
 		private void mostrarReporte(){
-			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
+			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerAll());
 			reporte.mostrar();
 		}
 		
 		private void crearContacto(){
-			this.agenda.agregarPersona(getNewPersonaDTO());
+			this.agenda.agregar(getNewPersonaDTO());
 			this.llenarTabla();
 			this.ventanaPersona.dispose();
 		}

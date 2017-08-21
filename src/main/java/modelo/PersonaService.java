@@ -6,28 +6,22 @@ import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.mysql.PersonaDAOMySQL;
 
 
-public class PersonaService 
-{
-	private PersonaDAO personaDao;	
+public class PersonaService extends BaseService<PersonaDTO>{
 	
-	public PersonaService()
-	{
-		personaDao = new PersonaDAOMySQL();
+	private static PersonaService instancia;
+	
+	private PersonaDAO personaDao = PersonaDAOMySQL.getDAO();	
+	
+	private PersonaService(){
+		super.dao = personaDao;
+		
 	}
 	
-	public void agregarPersona(PersonaDTO nuevaPersona)
-	{
-		personaDao.insert(nuevaPersona);
+	public static PersonaService getService(){
+		if(instancia == null)
+			instancia = new PersonaService();
+		return instancia;
 	}
 
-	public void borrarPersona(PersonaDTO persona_a_eliminar) 
-	{
-		personaDao.delete(persona_a_eliminar);
-	}
-	
-	public List<PersonaDTO> obtenerPersonas()
-	{
-		return personaDao.readAll();		
-	}
 	
 }

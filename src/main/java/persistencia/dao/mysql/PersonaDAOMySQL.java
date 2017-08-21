@@ -19,12 +19,26 @@ import dto.PersonaDTO;
 
 public class PersonaDAOMySQL implements PersonaDAO 
 {
+	
+	private static PersonaDAOMySQL instancia;
+	
 	private static Table<Record> PERSONAS = table("personas");
 	private static Field<Integer> IDPERSONA = field("idPersona", Integer.class);
 	private static Field<String> NOMBRE = field("nombrePersona", String.class);
 	private static Field<String> TELEFONO = field("telefonoPersona", String.class);
 	
 	private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
+	
+	private PersonaDAOMySQL(){
+		
+	}
+	
+	public static PersonaDAOMySQL getDAO(){
+		if(instancia == null)
+			instancia = new PersonaDAOMySQL();
+		
+		return instancia;
+	}
 	
 	public boolean insert(PersonaDTO persona)
 	{	
