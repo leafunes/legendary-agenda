@@ -3,8 +3,9 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import modelo.Agenda;
+import modelo.PersonaService;
 import presentacion.reportes.ReporteAgenda;
+import presentacion.table.PersonasTableModel;
 import presentacion.vista.AgregaPersonaView;
 import presentacion.vista.MainView;
 import dto.PersonaDTO;
@@ -13,32 +14,38 @@ public class MainViewController{
 		private MainView vista;
 		private List<PersonaDTO> personasTabla;
 		private AgregaPersonaView ventanaPersona; 
-		private Agenda agenda;
+		private PersonaService agenda;
+		private PersonasTableModel tableModel;
 		
-		public MainViewController(MainView vista, Agenda agenda)
+		public MainViewController(MainView vista, PersonaService agenda)
 		{
 			this.vista = vista;
+			this.tableModel = new PersonasTableModel();
+			
 			this.vista.getBtnAgregar().addActionListener(e -> agregarContacto());
 			this.vista.getBtnBorrar().addActionListener(e -> borrarContacto());
 			this.vista.getBtnReporte().addActionListener(e -> mostrarReporte());
 			this.agenda = agenda;
 		}
 		
-		public void inicializar()
-		{
+		public void showView(){
 			this.llenarTabla();
+			
+			this.vista.getTablaPersonas().setModel(tableModel);
+			this.vista.getTablaPersonas().setColumnModel(tableModel.getTableColumnModel());
+			this.vista.getTablaPersonas().getTableHeader().setReorderingAllowed(false);
+			
+			this.vista.show();
 		}
 		
 		private void llenarTabla()
 		{
-			this.vista.getModelPersonas().setRowCount(0); //Para vaciar la tabla
+			this.tableModel.clean();
 			
 			this.personasTabla = agenda.obtenerPersonas();
+			this.tableModel.addRows(personasTabla);
 			
-			for(PersonaDTO p : this.personasTabla){
-				this.vista.getModelPersonas().addRow(toRow(p));
-			}
-			this.vista.show();
+
 		}
 		
 		private void agregarContacto(){
@@ -68,12 +75,6 @@ public class MainViewController{
 		}
 		
 
-		private Object[] toRow(PersonaDTO p){
-			Object[] fila = {p.getNombre(), p.getTelefono()};
-			
-			return fila;
-		}
-		
 		private PersonaDTO getNewPersonaDTO(){
 			PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
 			

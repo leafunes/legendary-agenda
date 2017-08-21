@@ -6,11 +6,11 @@ import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.mysql.PersonaDAOMySQL;
 
 
-public class Agenda 
+public class PersonaService 
 {
 	private PersonaDAO personaDao;	
 	
-	public Agenda()
+	public PersonaService()
 	{
 		personaDao = new PersonaDAOMySQL();
 	}

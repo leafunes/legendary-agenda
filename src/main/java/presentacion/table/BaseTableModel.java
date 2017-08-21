@@ -1,0 +1,67 @@
+package presentacion.table;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
+
+public abstract class BaseTableModel<T> extends DefaultTableModel{
+
+	private static final long serialVersionUID = 1L;
+	
+	protected List<String> columnas;
+	protected TableColumnModel colModel;
+	
+	
+	public BaseTableModel() {
+		
+		super(new Object[]{}, 0);
+		
+		columnas = new ArrayList<>();
+		colModel = new DefaultTableColumnModel();
+		
+		
+	}
+	
+	public void addColumn(String name, boolean resizable, int preferredWidth){
+		this.columnas.add(name);
+		
+		this.addColumn(name);
+
+		TableColumn c = new TableColumn(this.columnas.size() - 1);
+		c.setHeaderValue(name);
+		c.setResizable(resizable);
+		c.setPreferredWidth(preferredWidth);
+		
+		colModel.addColumn(c);
+		
+	}
+	
+	public void clean(){
+		this.setRowCount(0);
+	}
+	
+	public void addRows(List<T> toAdd){
+		toAdd.forEach(t -> addRow(t));
+		
+	}
+	
+	public void addRow(T t){
+		this.addRow(toRow(t));
+	}
+	
+	public TableColumnModel getTableColumnModel(){
+		return colModel;
+	}
+	
+	protected abstract Object[] toRow(T t);
+
+	
+}

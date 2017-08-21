@@ -16,8 +16,8 @@ public class MainView
 	private JButton btnAgregar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
-	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
+	//private DefaultTableModel modelPersonas;
+	//private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
 
 	public MainView() 
 	{
@@ -42,13 +42,11 @@ public class MainView
 		spPersonas.setBounds(0, 0, 798, 524);
 		panel.add(spPersonas);
 		
-		modelPersonas = new DefaultTableModel(null,nombreColumnas);
-		tablaPersonas = new JTable(modelPersonas);
+		//modelPersonas = new DefaultTableModel(null,nombreColumnas);
+		//tablaPersonas = new JTable(modelPersonas);
+		tablaPersonas = new JTable();
 		
-		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(103);
-		tablaPersonas.getColumnModel().getColumn(0).setResizable(false);
-		tablaPersonas.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
+
 		
 		spPersonas.setViewportView(tablaPersonas);
 		
@@ -89,18 +87,18 @@ public class MainView
 		return btnReporte;
 	}
 	
-	public DefaultTableModel getModelPersonas() 
-	{
-		return modelPersonas;
-	}
+//	public DefaultTableModel getModelPersonas() 
+//	{
+//		return modelPersonas;
+//	}
 	
 	public JTable getTablaPersonas()
 	{
 		return tablaPersonas;
 	}
 
-	public String[] getNombreColumnas() 
-	{
-		return nombreColumnas;
-	}
+//	public String[] getNombreColumnas() 
+//	{
+//		return nombreColumnas;
+//	}
 }
