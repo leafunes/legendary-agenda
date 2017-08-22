@@ -68,11 +68,14 @@ public class AgregaPersonaController {
 		
 		view.getCalendar().setDate(DateTime.now().toDate());
 		
+		String deptoStr = p.getDomicilio().getDepto() == null? "" : p.getDomicilio().getDepto().toString();
+		String pisoStr = p.getDomicilio().getPiso() == null? "" : p.getDomicilio().getPiso().toString();
+		
 		view.getTxtAltura().setText(p.getDomicilio().getAltura() + "");
 		view.getTxtCalle().setText(p.getDomicilio().getCalle());
-		view.getTxtDpto().setText(p.getDomicilio().getDepto() + "");
+		view.getTxtDpto().setText(deptoStr);
 		view.getTxtEmail().setText(p.getEmail());
-		view.getTxtPiso().setText(p.getDomicilio().getPiso() + "");
+		view.getTxtPiso().setText(pisoStr);
 		view.getTxtNombre().setText(p.getNombre());
 		view.getTxtTelefono().setText(p.getTelefono());
 		view.getBtnAgregarPersona().setVisible(false);

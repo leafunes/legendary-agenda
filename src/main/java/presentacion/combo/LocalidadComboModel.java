@@ -11,6 +11,8 @@ import dto.LocalidadDTO;
 public class LocalidadComboModel extends BaseComboBoxModel<LocalidadDTO>{
 	
 	public void actualize(List<LocalidadDTO> list){
+		this.removeAllElements();
+		
 		list.forEach(l -> this.addElement(l.getNombre()));
 		list.forEach(l -> values.put(l.getNombre(), l));
 	}

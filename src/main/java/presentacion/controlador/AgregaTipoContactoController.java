@@ -1,5 +1,7 @@
 package presentacion.controlador;
 
+import javax.swing.JOptionPane;
+
 import dto.TipoContactoDTO;
 import modelo.TipoContactoService;
 import presentacion.vista.AgregaTipoContactoView;
@@ -18,14 +20,26 @@ public class AgregaTipoContactoController {
     }
 
     private void crearTipoContacto(){
-        this.tipoContactoService.agregar(getNewTipoContactoDTO());
-        this.closeView();
+        if(isFieldsOk()){
+        	this.tipoContactoService.agregar(getNewTipoContactoDTO());
+            this.closeView();
+        }
     }
 
 
     public void showView(){
         view.setVisible(true);
     }
+    
+	private boolean isFieldsOk(){
+		if(view.getTxtNombre().getText().isEmpty()){
+			JOptionPane.showMessageDialog(view, "El nombre no puede ser vacio", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}
+		
+		return true;
+	}
 
     public void closeView(){
         view.getTxtNombre().setText("");

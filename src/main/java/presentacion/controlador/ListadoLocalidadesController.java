@@ -73,7 +73,6 @@ public class ListadoLocalidadesController {
 	
 	private void llenarTabla(){
 		this.locTableModel.clean();
-		
 		this.locTableModel.addRows(localidadService.obtenerAll());
 	}
 	

@@ -1,5 +1,8 @@
 package presentacion.controlador;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import modelo.LocalidadService;
@@ -22,14 +25,26 @@ public class AgregaLocalidadController {
 	}
 	
 	private void crearLocalidad(){
-		this.localidadService.agregar(getNewLocalidadDTO());
-		this.closeView();
+		if(isFieldsOk()){
+			this.localidadService.agregar(getNewLocalidadDTO());
+			this.closeView();
+		}
 	}
 	
 	
 	public void showView(){
 		
 		view.setVisible(true);
+	}
+	
+	private boolean isFieldsOk(){
+		if(view.getTxtNombre().getText().isEmpty()){
+			JOptionPane.showMessageDialog(view, "El nombre no puede ser vacio", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public void closeView(){

@@ -48,9 +48,16 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 	
 	public void clean(){
 		this.setRowCount(0);
+		this.rows.clear();
+	}
+	
+	public void actualizeRows(List<T> newlist){
+		this.rows.clear();
+		addRows(newlist);
 	}
 	
 	public void addRows(List<T> toAdd){
+		
 		toAdd.forEach(t -> addRow(t));
 		
 	}
