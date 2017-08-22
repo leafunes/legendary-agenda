@@ -25,7 +25,7 @@ public class TipoContactoDAOMySQL implements TipoContactoDAO {
 
     private static Table<Record> TIPOCONTACTOS = table ("tipoContactos");
     private static Field<Integer> IDTIPOCONTACTO = field("idTipoContacto", Integer.class);
-    private static Field<String> NOMBRE = field("nombreTipoContacto", String.class);
+    private static Field<String> NOMBRE = field("nombreTipo", String.class);
 
     private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 
