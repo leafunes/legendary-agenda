@@ -121,6 +121,10 @@ public class MainView
 		return mntmLocalidades;
 	}
 
+	public JMenuItem getMntmTipoContacto() {
+		return mntmTipoContacto;
+	}
+
 	public JButton getBtnEditar() {
 		return btnEditar;
 	}

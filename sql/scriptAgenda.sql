@@ -15,3 +15,12 @@ CREATE TABLE localidades
 	PRIMARY KEY (idLocalidad)
 
 );
+
+CREATE TABLE tipoContactos
+(
+   idTipoContacto int(11) NOT NULL AUTO_INCREMENT,
+   	nombreTipo varchar(45) NOT NULL,
+   	PRIMARY KEY (idTipoContacto)
+
+
+);
