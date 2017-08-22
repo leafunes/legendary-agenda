@@ -161,8 +161,8 @@ public class PersonaDAOMySQL implements PersonaDAO
 			String tel = r.getValue(TELEFONO);
 			String calle = r.getValue(CALLE);
 			int altura = r.getValue(ALTURA);
-			int piso = r.getValue(PISO);
-			int depto = r.getValue(DEPTO);
+			Integer piso = r.getValue(PISO);
+			Integer depto = r.getValue(DEPTO);
 			int localidadID = r.getValue(IDLOCALIDAD);
 			String email = r.getValue(EMAIL);
 			DateTime cumple = new DateTime(r.getValue(CUMPLE));
