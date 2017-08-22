@@ -6,6 +6,7 @@ import static org.jooq.impl.DSL.table;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.TipoContactoDTO;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -15,11 +16,10 @@ import org.jooq.Table;
 import org.jooq.impl.DSL;
 
 import dto.LocalidadDTO;
-import dto.PersonaDTO;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
 
-public class LocalidadDAOMySQL implements LocalidadDAO{
+public class LocalidadDAOMySQL implements LocalidadDAO {
 	
 	private static LocalidadDAOMySQL instancia;
 	

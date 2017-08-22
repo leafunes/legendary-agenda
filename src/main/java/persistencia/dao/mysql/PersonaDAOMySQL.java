@@ -3,6 +3,7 @@ package persistencia.dao.mysql;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.TipoContactoDTO;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -17,7 +18,7 @@ import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
 
-public class PersonaDAOMySQL implements PersonaDAO 
+public class PersonaDAOMySQL implements PersonaDAO
 {
 	
 	private static PersonaDAOMySQL instancia;
