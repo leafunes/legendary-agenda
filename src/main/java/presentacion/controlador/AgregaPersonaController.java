@@ -27,7 +27,8 @@ public class AgregaPersonaController {
 	}
 	
 	private void actualizeContacto(){
-		//TODO
+		personaService.actualizePersona(oldPersona, getNewPersonaDTO());
+		this.closeView();
 	}
 	
 	public void editaPersona(PersonaDTO p){

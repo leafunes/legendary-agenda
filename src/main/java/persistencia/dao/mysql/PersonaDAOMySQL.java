@@ -83,4 +83,17 @@ public class PersonaDAOMySQL implements PersonaDAO
 		return toReturn;
 		
 	}
+
+	@Override
+	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona) {
+		
+		int query = create.update(PERSONAS)
+							.set(NOMBRE, newPersona.getNombre())
+							.set(TELEFONO, newPersona.getTelefono())
+							.where(IDPERSONA.eq(oldPersona.getIdPersona()))
+							.execute();
+		
+	}
+	
+	
 }

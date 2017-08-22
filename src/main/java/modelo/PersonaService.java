@@ -24,4 +24,8 @@ public class PersonaService extends BaseService<PersonaDTO>{
 	}
 
 	
+	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona){
+		personaDao.actualizePersona(oldPersona, newPersona);
+	}
+	
 }

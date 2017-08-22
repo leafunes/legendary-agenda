@@ -5,5 +5,7 @@ import java.util.List;
 import dto.PersonaDTO;
 
 public interface PersonaDAO extends DAO<PersonaDTO>{
-	//TODO
+	
+	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona);
+
 }
