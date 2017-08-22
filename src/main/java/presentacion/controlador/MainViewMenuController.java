@@ -20,7 +20,6 @@ public class MainViewMenuController {
 	}
 	
 	private void showLocalidadesView(){
-		System.out.println("asd");
 		localidadesController.showView();
 	}
 

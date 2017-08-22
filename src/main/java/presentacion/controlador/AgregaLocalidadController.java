@@ -12,6 +12,7 @@ public class AgregaLocalidadController {
 	private AgregaLocalidadView view;
 	private LocalidadService localidadService = LocalidadService.getService();
 	
+	
 	public AgregaLocalidadController() {
 	
 		view = new AgregaLocalidadView();
@@ -27,6 +28,7 @@ public class AgregaLocalidadController {
 	
 	
 	public void showView(){
+		
 		view.setVisible(true);
 	}
 	

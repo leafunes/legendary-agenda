@@ -3,6 +3,7 @@ package presentacion.vista;
 
 import java.awt.Dialog.ModalExclusionType;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.MainController;
+import javax.swing.JComboBox;
 
 public class AgregaPersonaView extends JDialog 
 {
@@ -21,6 +23,7 @@ public class AgregaPersonaView extends JDialog
 	private JTextField txtTelefono;
 	private JButton btnAgregarPersona;
 	private JButton btnGuardar;
+	private JComboBox<String> localidadCombo;
 
 	public AgregaPersonaView() 
 	{
@@ -68,6 +71,14 @@ public class AgregaPersonaView extends JDialog
 		btnGuardar.setVisible(false);
 		panel.add(btnGuardar);
 		
+		JLabel lblLocalidad = new JLabel("Localidad: ");
+		lblLocalidad.setBounds(10, 93, 137, 15);
+		panel.add(lblLocalidad);
+		
+		localidadCombo = new JComboBox<>();
+		localidadCombo.setBounds(165, 88, 164, 24);
+		panel.add(localidadCombo);
+		
 	}
 	
 	public JTextField getTxtNombre() 
@@ -88,6 +99,9 @@ public class AgregaPersonaView extends JDialog
 	public JButton getBtnGuardar() {
 		return btnGuardar;
 	}
-	
+
+	public JComboBox<String> getLocalidadCombo() {
+		return localidadCombo;
+	}
 }
 

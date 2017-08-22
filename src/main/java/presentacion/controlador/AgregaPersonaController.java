@@ -1,6 +1,7 @@
 package presentacion.controlador;
 
 import dto.PersonaDTO;
+import modelo.LocalidadService;
 import modelo.PersonaService;
 import presentacion.vista.AgregaPersonaView;
 
@@ -8,6 +9,7 @@ public class AgregaPersonaController {
 
 	private AgregaPersonaView view;
 	private PersonaService personaService = PersonaService.getService();
+	private LocalidadService localidadService = LocalidadService.getService();
 	
 	private PersonaDTO oldPersona;
 	
@@ -53,6 +55,7 @@ public class AgregaPersonaController {
 	}
 	
 	public void showView(){
+
 		view.setVisible(true);
 	}
 	
