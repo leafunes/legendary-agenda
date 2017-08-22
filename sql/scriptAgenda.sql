@@ -1,6 +1,6 @@
-DROP DATABASE agenda;
-CREATE DATABASE agenda;
-USE agenda;
+
+CREATE DATABASE tpi_g7;
+USE tpi_g7;
 
 CREATE TABLE localidades
 (
