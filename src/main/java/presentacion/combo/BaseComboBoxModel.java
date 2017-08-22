@@ -24,4 +24,12 @@ public abstract class BaseComboBoxModel<T> extends DefaultComboBoxModel<String>{
 		
 		return values.get(selected);
 	}
+	
+	public abstract void setSelected(T toSelect);
+	
+	public void clearSelection(){
+		
+		setSelectedItem(null);
+		
+	}
 }

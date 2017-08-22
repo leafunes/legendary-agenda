@@ -89,8 +89,7 @@ public class LocalidadDAOMySQL implements LocalidadDAO {
 		LocalidadDTO toReturn = null;
 		
 		Result<Record> res = create.select()
-									.from(LOCALIDADES.join(PERSONAS)
-											.on(LOCALIDADES.field(IDLOCALIDAD).eq(PERSONAS.field(IDLOCALIDAD))))
+									.from(LOCALIDADES.naturalJoin(PERSONAS))
 									.where(IDPERSONA.eq(p.getIdPersona()))
 									.fetch();
 		

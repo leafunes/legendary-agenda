@@ -12,6 +12,14 @@ public class TipoContactoComboModel extends BaseComboBoxModel<TipoContactoDTO>{
 		list.forEach(l -> values.put(l.getNombre(), l));
 		
 	}
+
+	@Override
+	public void setSelected(TipoContactoDTO toSelect) {
+		String nombre = toSelect.getNombre();
+		
+		this.setSelectedItem(nombre);
+		
+	}
 	
 	
 

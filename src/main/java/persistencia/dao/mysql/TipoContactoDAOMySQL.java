@@ -90,8 +90,7 @@ public class TipoContactoDAOMySQL implements TipoContactoDAO {
 		TipoContactoDTO toReturn = null;
 		
 		Result<Record> res = create.select()
-									.from(TIPOCONTACTOS.join(PERSONAS)
-											.on(TIPOCONTACTOS.field(IDTIPOCONTACTO).eq(PERSONAS.field(IDTIPOCONTACTO))))
+									.from(TIPOCONTACTOS.naturalJoin(PERSONAS))
 									.where(IDPERSONA.eq(p.getIdPersona()))
 									.fetch();
 		

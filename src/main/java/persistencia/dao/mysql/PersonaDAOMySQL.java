@@ -52,9 +52,6 @@ public class PersonaDAOMySQL implements PersonaDAO
 	
 	private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 	
-	private static LocalidadDAO localidadDAO= LocalidadDAOMySQL.getDAO();
-	private static TipoContactoDAO tipoContactoDAO= TipoContactoDAOMySQL.getDAO();
-	
 	private PersonaDAOMySQL(){
 		
 	}

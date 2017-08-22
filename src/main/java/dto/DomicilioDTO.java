@@ -49,6 +49,12 @@ public class DomicilioDTO
 	public void setLocalidad(LocalidadDTO localidad) {
 		this.localidad = localidad;
 	}
+	
+	public String toString(){
+		
+		return calle + " al " + altura + " " + piso + " " + depto + ", " + localidad.getNombre();
+		
+	}
 
 
 }

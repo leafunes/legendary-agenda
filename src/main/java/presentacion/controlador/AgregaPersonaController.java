@@ -54,9 +54,20 @@ public class AgregaPersonaController {
 	
 	public void editaPersona(PersonaDTO p){
 		view.setTitle("Editar Contacto");
+		fillCombos();
 		
 		oldPersona = p;
 		
+		comboModel.setSelected(p.getDomicilio().getLocalidad());
+		contactoComboModel.setSelected(p.getTipo());
+		
+		view.getCalendar().setDate(DateTime.now().toDate());
+		
+		view.getTxtAltura().setText(p.getDomicilio().getAltura() + "");
+		view.getTxtCalle().setText(p.getDomicilio().getCalle());
+		view.getTxtDpto().setText(p.getDomicilio().getDepto() + "");
+		view.getTxtEmail().setText(p.getEmail());
+		view.getTxtPiso().setText(p.getDomicilio().getPiso() + "");
 		view.getTxtNombre().setText(p.getNombre());
 		view.getTxtTelefono().setText(p.getTelefono());
 		view.getBtnAgregarPersona().setVisible(false);
@@ -65,20 +76,35 @@ public class AgregaPersonaController {
 	
 	public void agregaPersona(){
 		view.setTitle("Agregar Contacto");
-
-		comboModel.actualize(localidadService.obtenerAll());
-		view.getLocalidadCombo().setModel(comboModel);
+		fillCombos();
 		
-		contactoComboModel.actualize(tipoContactoService.obtenerAll());
-		view.getTipoCombo().setModel(contactoComboModel);
-
+		comboModel.clearSelection();
+		contactoComboModel.clearSelection();
+		
+		view.getCalendar().setDate(DateTime.now().toDate());
+		
+		view.getTxtAltura().setText("");
+		view.getTxtCalle().setText("");
+		view.getTxtDpto().setText("");
+		view.getTxtEmail().setText("");
+		view.getTxtPiso().setText("");
 		view.getTxtNombre().setText("");
 		view.getTxtTelefono().setText("");
 		view.getBtnAgregarPersona().setVisible(true);
 		view.getBtnGuardar().setVisible(false);
 	}
 	
+	private void fillCombos(){
+		
+		comboModel.actualize(localidadService.obtenerAll());
+		view.getLocalidadCombo().setModel(comboModel);
+
+		contactoComboModel.actualize(tipoContactoService.obtenerAll());
+		view.getTipoCombo().setModel(contactoComboModel);
+	}
+	
 	public void showView(){
+		
 		
 		view.setVisible(true);
 	}

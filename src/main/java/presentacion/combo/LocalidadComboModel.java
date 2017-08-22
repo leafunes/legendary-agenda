@@ -15,4 +15,13 @@ public class LocalidadComboModel extends BaseComboBoxModel<LocalidadDTO>{
 		list.forEach(l -> values.put(l.getNombre(), l));
 	}
 
+	@Override
+	public void setSelected(LocalidadDTO toSelect) {
+		
+		String nombre = toSelect.getNombre();
+		
+		this.setSelectedItem(nombre);
+		
+	}
+
 }

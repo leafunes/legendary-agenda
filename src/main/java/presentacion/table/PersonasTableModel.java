@@ -10,8 +10,12 @@ public class PersonasTableModel extends BaseTableModel<PersonaDTO>{
 	
 	public PersonasTableModel() {
 		
+		super.addColumn("Tipo Contacto", false, 100);
 		super.addColumn("Nombre y Apellido", false, 103);
 		super.addColumn("Télefono", false, 100);
+		super.addColumn("Domicilio", false, 200);
+		super.addColumn("Cumpleaños", false, 75);
+		super.addColumn("Email", false, 150);
 		
 	}
 	
@@ -19,7 +23,15 @@ public class PersonasTableModel extends BaseTableModel<PersonaDTO>{
 	
 	@Override
 	protected Object[] toRow(PersonaDTO t){
-		Object[] fila = {t.getNombre(), t.getTelefono()};
+		
+		String domicilio = t.getDomicilio().toString();
+		
+		Object[] fila = {t.getTipo().getNombre(),
+						t.getNombre(),
+						t.getTelefono(),
+						domicilio,
+						t.getCumple().toString("dd/MM"),
+						t.getEmail()};
 		
 		return fila;
 	}
