@@ -97,12 +97,63 @@ public class PersonaDAOMySQL implements PersonaDAO
 	public List<PersonaDTO> readAll()
 	{
 
-		List<PersonaDTO> toReturn = new ArrayList<>();
 		
 		Result<Record> res = create.select()
 									.from(PERSONAS.naturalJoin(LOCALIDADES)
 												.naturalJoin(TIPOS))
 									.fetch();
+		
+		
+		return getListOfPersonas(res);
+		
+	}
+
+	@Override
+	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona) {
+		
+		int query = create.update(PERSONAS)
+							.set(NOMBRE, newPersona.getNombre())
+							.set(TELEFONO, newPersona.getTelefono())
+							.set(CALLE, newPersona.getDomicilio().getCalle())
+							.set(ALTURA, newPersona.getDomicilio().getAltura())
+							.set(PISO, newPersona.getDomicilio().getPiso())
+							.set(DEPTO, newPersona.getDomicilio().getDepto())
+							.set(IDLOCALIDAD, newPersona.getDomicilio().getLocalidad().getId())
+							.set(EMAIL, newPersona.getEmail())
+							.set(CUMPLE,newPersona.getCumple().toString())
+							.set(IDTIPOCONTACTO, newPersona.getTipo().getId())
+							.where(IDPERSONA.eq(oldPersona.getIdPersona()))
+							.execute();
+		
+	}
+
+	@Override
+	public List<PersonaDTO> getAllWith(TipoContactoDTO contacto) {
+		
+		Result<Record> res = create.select()
+									.from(PERSONAS.naturalJoin(TIPOS).naturalJoin(LOCALIDADES))
+									.where(IDTIPOCONTACTO.eq(contacto.getId()))
+									.fetch();
+		
+		return getListOfPersonas(res);
+		
+	}
+	
+	@Override
+	public List<PersonaDTO> getAllWith(LocalidadDTO localidad) {
+		
+		Result<Record> res = create.select()
+									.from(PERSONAS.naturalJoin(TIPOS).naturalJoin(LOCALIDADES))
+									.where(IDLOCALIDAD.eq(localidad.getId()))
+									.fetch();
+		
+		return getListOfPersonas(res);
+		
+	}
+	
+	private List<PersonaDTO> getListOfPersonas(Result<Record> res){
+		
+		List<PersonaDTO> toRet = new ArrayList<>();
 		
 		for(Record r : res){
 			int id = r.getValue(IDPERSONA);
@@ -129,31 +180,11 @@ public class PersonaDAOMySQL implements PersonaDAO
 			
 			PersonaDTO toAdd= new PersonaDTO(id, nombre, tel, domicilio, cumple, email, tipo);
 			
-			toReturn.add(toAdd);
+			toRet.add(toAdd);
 			
 		}
 		
-		return toReturn;
-		
-	}
-
-	@Override
-	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona) {
-		
-		int query = create.update(PERSONAS)
-							.set(NOMBRE, newPersona.getNombre())
-							.set(TELEFONO, newPersona.getTelefono())
-							.set(CALLE, newPersona.getDomicilio().getCalle())
-							.set(ALTURA, newPersona.getDomicilio().getAltura())
-							.set(PISO, newPersona.getDomicilio().getPiso())
-							.set(DEPTO, newPersona.getDomicilio().getDepto())
-							.set(IDLOCALIDAD, newPersona.getDomicilio().getLocalidad().getId())
-							.set(EMAIL, newPersona.getEmail())
-							.set(CUMPLE,newPersona.getCumple().toString())
-							.set(IDTIPOCONTACTO, newPersona.getTipo().getId())
-							.where(IDPERSONA.eq(oldPersona.getIdPersona()))
-							.execute();
-		
+		return toRet;
 	}
 	
 	

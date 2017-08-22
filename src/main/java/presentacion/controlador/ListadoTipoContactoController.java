@@ -1,5 +1,8 @@
 package presentacion.controlador;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import modelo.LocalidadService;
 import modelo.TipoContactoService;
 import presentacion.table.LocalidadesTableModel;
@@ -40,9 +43,20 @@ public class ListadoTipoContactoController {
 
     private void borrarTipoContacto(){
 
-        int[] filas_seleccionadas = this.view.getTable().getSelectedRows();
+        int[] seleccionadas = this.view.getTable().getSelectedRows();
+        
+        for (int fila : seleccionadas){
+        	if(tipoContactoService.existsPersonaWith(this.tipoTableModel.getRow(fila))){
+        		JOptionPane.showMessageDialog(view, "El tipo de contacto " 
+        										+ this.tipoTableModel.getRow(fila).getNombre() 
+        										+ " tiene asociada a una persona",
+        										"Error al borrar",
+        										JOptionPane.ERROR_MESSAGE);
+        	return;	
+        	}
+        }
 
-        for (int fila : filas_seleccionadas){
+        for (int fila : seleccionadas){
             this.tipoContactoService.borrar(this.tipoTableModel.getRow(fila));
         }
 

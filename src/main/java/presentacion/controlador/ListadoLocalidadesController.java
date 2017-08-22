@@ -1,5 +1,7 @@
 package presentacion.controlador;
 
+import javax.swing.JOptionPane;
+
 import modelo.LocalidadService;
 import presentacion.table.LocalidadesTableModel;
 import presentacion.vista.ListadoLocalidadesView;
@@ -37,9 +39,20 @@ public class ListadoLocalidadesController {
 	
 	private void borrarLocalidad(){
 		
-		int[] filas_seleccionadas = this.view.getTable().getSelectedRows();
+		int[] seleccionadas = this.view.getTable().getSelectedRows();
 		
-		for (int fila : filas_seleccionadas){
+        for (int fila : seleccionadas){
+        	if(localidadService.existsPersonaWith(this.locTableModel.getRow(fila))){
+        		JOptionPane.showMessageDialog(view, "La localidad " 
+        										+ this.locTableModel.getRow(fila).getNombre() 
+        										+ " tiene asociada a una persona",
+        										"Error al borrar",
+        										JOptionPane.ERROR_MESSAGE);
+        	return;	
+        	}
+        }
+		
+		for (int fila : seleccionadas){
 			this.localidadService.borrar(this.locTableModel.getRow(fila));
 		}
 		
