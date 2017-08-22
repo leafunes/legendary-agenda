@@ -2,68 +2,53 @@ package dto;
 
 public class DomicilioDTO
 {
-	private int numero;
 	private String calle;
-	private String altura;
+	private int altura;
 	private int piso;
-	private String depto;
-	private String localidad;
-
-	public DomicilioDTO(int numero, String calle, String altura, int piso, String depto, String localidad)
-	{
-		this.numero= numero;
+	private int depto;
+	private LocalidadDTO localidad;
+	
+	
+	public DomicilioDTO(String calle, int altura, int piso, int depto, LocalidadDTO localidad) {
+		super();
 		this.calle = calle;
 		this.altura = altura;
 		this.piso = piso;
 		this.depto = depto;
 		this.localidad = localidad;
 	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
+	
+	
 	public String getCalle() {
 		return calle;
 	}
-
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}
-
-	public String getAltura() {
+	public int getAltura() {
 		return altura;
 	}
-
-	public void setAltura(String altura) {
+	public void setAltura(int altura) {
 		this.altura = altura;
 	}
-
 	public int getPiso() {
 		return piso;
 	}
-
 	public void setPiso(int piso) {
 		this.piso = piso;
 	}
-
-	public String getDepto() {
+	public int getDepto() {
 		return depto;
 	}
-
-	public void setDepto(String depto) {
+	public void setDepto(int depto) {
 		this.depto = depto;
 	}
-
-	public String getLocalidad() {
+	public LocalidadDTO getLocalidad() {
 		return localidad;
 	}
-
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(LocalidadDTO localidad) {
 		this.localidad = localidad;
 	}
+
+
 }

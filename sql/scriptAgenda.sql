@@ -1,12 +1,6 @@
+
 CREATE DATABASE agenda;
 USE agenda;
-CREATE TABLE personas
-(
-	idPersona int(11) NOT NULL AUTO_INCREMENT,
-	nombrePersona varchar(45) NOT NULL,
-	telefonoPersona varchar(20) NOT NULL,
-	PRIMARY KEY (idPersona)
-);
 
 CREATE TABLE localidades
 (
@@ -24,3 +18,22 @@ CREATE TABLE tipoContactos
 
 
 );
+
+CREATE TABLE personas
+(
+	idPersona int(11) NOT NULL AUTO_INCREMENT,
+	nombrePersona varchar(45) NOT NULL,
+	telefonoPersona varchar(20) NOT NULL,
+	callePersona varchar(20) NOT NULL,
+	alturaPersona int(11) NOT NULL,
+	pisoPersona int(11),
+	departamentoPersona int(11),
+	idLocalidad int(11) NOT NULL,
+	emailPersona varchar(45) NOT NULL,
+	cumplePersona datetime NOT NULL,
+	idTipoContacto int(11) NOT NULL,
+	PRIMARY KEY (idPersona),
+	FOREIGN KEY (idLocalidad) REFERENCES localidades(idLocalidad),
+	FOREIGN KEY (idTipoContacto) REFERENCES tipoContactos(idTipoContacto)
+);
+

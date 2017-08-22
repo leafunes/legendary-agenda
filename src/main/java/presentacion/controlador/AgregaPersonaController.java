@@ -1,9 +1,11 @@
 package presentacion.controlador;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 
+import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import modelo.LocalidadService;
@@ -55,7 +57,9 @@ public class AgregaPersonaController {
 	
 	public void agregaPersona(){
 		view.setTitle("Agregar Contacto");
-		
+
+		comboModel.actualize(localidadService.obtenerAll());
+		view.getLocalidadCombo().setModel(comboModel);
 
 		view.getTxtNombre().setText("");
 		view.getTxtTelefono().setText("");
@@ -64,10 +68,6 @@ public class AgregaPersonaController {
 	}
 	
 	public void showView(){
-		
-		comboModel.actualize(localidadService.obtenerAll());
-		
-		view.getLocalidadCombo().setModel(comboModel);
 		
 		view.setVisible(true);
 	}
@@ -79,7 +79,22 @@ public class AgregaPersonaController {
 	}
 	
 	private PersonaDTO getNewPersonaDTO(){
-		PersonaDTO nuevaPersona = new PersonaDTO(0,this.view.getTxtNombre().getText(), view.getTxtTelefono().getText());
+		
+		LocalidadDTO localidad = comboModel.getSelectedLocalidad();
+		
+		Date cumple = view.getCalendar().getDate();
+		
+		DomicilioDTO domicilio = new DomicilioDTO(view.getTxtCalle().getText(),
+												Integer.getInteger(view.getTxtAltura().getText()),
+												Integer.getInteger(view.getTxtPiso().getText()),
+												Integer.getInteger(view.getTxtDpto().getText()),
+												localidad);
+		
+		PersonaDTO nuevaPersona = new PersonaDTO(0,this.view.getTxtNombre().getText(),
+													view.getTxtTelefono().getText(),
+													domicilio,
+													cumple,
+													view.getTxtEmail().getText());
 		
 		return nuevaPersona;
 	}
