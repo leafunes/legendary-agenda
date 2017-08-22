@@ -20,6 +20,7 @@ public class AgregaPersonaView extends JDialog
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
 	private JButton btnAgregarPersona;
+	private JButton btnGuardar;
 
 	public AgregaPersonaView() 
 	{
@@ -62,6 +63,11 @@ public class AgregaPersonaView extends JDialog
 		btnAgregarPersona.setBounds(234, 123, 95, 23);
 		panel.add(btnAgregarPersona);
 		
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(234, 123, 95, 23);
+		btnGuardar.setVisible(false);
+		panel.add(btnGuardar);
+		
 	}
 	
 	public JTextField getTxtNombre() 
@@ -77,6 +83,10 @@ public class AgregaPersonaView extends JDialog
 	public JButton getBtnAgregarPersona() 
 	{
 		return btnAgregarPersona;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
 	}
 	
 }

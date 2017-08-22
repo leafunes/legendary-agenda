@@ -25,6 +25,7 @@ public class MainView
 	private JMenu mnEditar;
 	private JMenuItem mntmLocalidades;
 	private JMenuItem mntmTipoContacto;
+	private JButton btnEditar;
 	
 	public static MainView getView(){
 		if(instance == null)
@@ -68,7 +69,7 @@ public class MainView
 		btnBorrar.setBounds(229, 516, 95, 25);
 		panel.add(btnBorrar);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
 		btnEditar.setBounds(448, 516, 95, 25);
 		panel.add(btnEditar);
 		
@@ -118,6 +119,10 @@ public class MainView
 
 	public JMenuItem getMntmLocalidades() {
 		return mntmLocalidades;
+	}
+
+	public JButton getBtnEditar() {
+		return btnEditar;
 	}
 
 }

@@ -29,6 +29,7 @@ public class MainController{
 			
 			this.vista.getBtnAgregar().addActionListener(e -> agregarContacto());
 			this.vista.getBtnBorrar().addActionListener(e -> borrarContacto());
+			this.vista.getBtnEditar().addActionListener(e -> editarContacto());
 			this.vista.getBtnReporte().addActionListener(e -> mostrarReporte());
 			
 			this.agenda = agenda;
@@ -55,6 +56,7 @@ public class MainController{
 		}
 		
 		private void agregarContacto(){
+			this.agregaPersonaController.agregaPersona();
 			this.agregaPersonaController.showView();
 			this.llenarTabla();
 		}
@@ -67,6 +69,17 @@ public class MainController{
 			}
 			
 			this.llenarTabla();
+		}
+		
+		private void editarContacto(){
+			int[] select = this.vista.getTablaPersonas().getSelectedRows();
+			
+			if(select.length == 1){
+				agregaPersonaController.editaPersona(this.tableModel.getRow(select[0]));
+				agregaPersonaController.showView();
+				this.llenarTabla();
+			}
+			
 		}
 		
 		private void mostrarReporte(){

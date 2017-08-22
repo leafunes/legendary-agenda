@@ -9,11 +9,15 @@ public class AgregaPersonaController {
 	private AgregaPersonaView view;
 	private PersonaService personaService = PersonaService.getService();
 	
+	private PersonaDTO oldPersona;
+	
 	public AgregaPersonaController() {
 	
 		view = new AgregaPersonaView();
 		
 		view.getBtnAgregarPersona().addActionListener(e -> crearContacto());
+		view.getBtnGuardar().addActionListener(e -> actualizeContacto());
+		
 	
 	}
 	
@@ -22,6 +26,30 @@ public class AgregaPersonaController {
 		this.closeView();
 	}
 	
+	private void actualizeContacto(){
+		//TODO
+	}
+	
+	public void editaPersona(PersonaDTO p){
+		view.setTitle("Editar Contacto");
+		
+		oldPersona = p;
+		
+		view.getTxtNombre().setText(p.getNombre());
+		view.getTxtTelefono().setText(p.getTelefono());
+		view.getBtnAgregarPersona().setVisible(false);
+		view.getBtnGuardar().setVisible(true);
+	}
+	
+	public void agregaPersona(){
+		view.setTitle("Agregar Contacto");
+		
+
+		view.getTxtNombre().setText("");
+		view.getTxtTelefono().setText("");
+		view.getBtnAgregarPersona().setVisible(true);
+		view.getBtnGuardar().setVisible(false);
+	}
 	
 	public void showView(){
 		view.setVisible(true);
