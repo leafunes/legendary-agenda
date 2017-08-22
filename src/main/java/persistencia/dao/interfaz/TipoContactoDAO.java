@@ -1,8 +1,9 @@
 package persistencia.dao.interfaz;
 
+import dto.PersonaDTO;
 import dto.TipoContactoDTO;
 
 public interface TipoContactoDAO extends DAO<TipoContactoDTO> {
 
-    //TODO
+    public TipoContactoDTO getTipoOf(PersonaDTO p);
 }

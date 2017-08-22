@@ -6,6 +6,8 @@ import static org.jooq.impl.DSL.table;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.LocalidadDTO;
+import dto.PersonaDTO;
 import dto.TipoContactoDTO;
 
 import org.jooq.DSLContext;
@@ -24,6 +26,9 @@ public class TipoContactoDAOMySQL implements TipoContactoDAO {
     private static TipoContactoDAOMySQL instancia;
 
     private static Table<Record> TIPOCONTACTOS = table ("tipoContactos");
+	private static Table<Record> PERSONAS = table("personas");
+
+	private static Field<Integer> IDPERSONA = field("idPersona", Integer.class);
     private static Field<Integer> IDTIPOCONTACTO = field("idTipoContacto", Integer.class);
     private static Field<String> NOMBRE = field("nombreTipo", String.class);
 
@@ -78,5 +83,27 @@ public class TipoContactoDAOMySQL implements TipoContactoDAO {
 
         return toReturn;
     }
+
+	@Override
+	public TipoContactoDTO getTipoOf(PersonaDTO p) {
+		
+		TipoContactoDTO toReturn = null;
+		
+		Result<Record> res = create.select()
+									.from(TIPOCONTACTOS.join(PERSONAS)
+											.on(TIPOCONTACTOS.field(IDTIPOCONTACTO).eq(PERSONAS.field(IDTIPOCONTACTO))))
+									.where(IDPERSONA.eq(p.getIdPersona()))
+									.fetch();
+		
+		for(Record r : res){
+			int id = r.getValue(IDTIPOCONTACTO);
+			String nombre = r.getValue(NOMBRE);
+			
+			toReturn = new TipoContactoDTO(id, nombre);
+			
+		}
+		
+		return toReturn;
+	}
 
 }

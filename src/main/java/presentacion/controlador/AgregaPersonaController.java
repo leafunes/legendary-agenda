@@ -8,9 +8,12 @@ import javax.swing.DefaultComboBoxModel;
 import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
+import dto.TipoContactoDTO;
 import modelo.LocalidadService;
 import modelo.PersonaService;
+import modelo.TipoContactoService;
 import presentacion.combo.LocalidadComboModel;
+import presentacion.combo.TipoContactoComboModel;
 import presentacion.vista.AgregaPersonaView;
 
 public class AgregaPersonaController {
@@ -18,8 +21,10 @@ public class AgregaPersonaController {
 	private AgregaPersonaView view;
 	private PersonaService personaService = PersonaService.getService();
 	private LocalidadService localidadService = LocalidadService.getService();
+	private TipoContactoService tipoContactoService = TipoContactoService.getService();
 	
 	private LocalidadComboModel comboModel;
+	private TipoContactoComboModel contactoComboModel;
 	
 	private PersonaDTO oldPersona;
 	
@@ -27,6 +32,7 @@ public class AgregaPersonaController {
 	
 		view = new AgregaPersonaView();
 		comboModel = new LocalidadComboModel();
+		contactoComboModel = new TipoContactoComboModel();
 		
 		view.getBtnAgregarPersona().addActionListener(e -> crearContacto());
 		view.getBtnGuardar().addActionListener(e -> actualizeContacto());
@@ -80,7 +86,7 @@ public class AgregaPersonaController {
 	
 	private PersonaDTO getNewPersonaDTO(){
 		
-		LocalidadDTO localidad = comboModel.getSelectedLocalidad();
+		LocalidadDTO localidad = comboModel.getSelected();
 		
 		Date cumple = view.getCalendar().getDate();
 		
@@ -90,11 +96,14 @@ public class AgregaPersonaController {
 												Integer.getInteger(view.getTxtDpto().getText()),
 												localidad);
 		
+		TipoContactoDTO tipo = contactoComboModel.getSelected();
+		
 		PersonaDTO nuevaPersona = new PersonaDTO(0,this.view.getTxtNombre().getText(),
 													view.getTxtTelefono().getText(),
 													domicilio,
 													cumple,
-													view.getTxtEmail().getText());
+													view.getTxtEmail().getText(),
+													tipo);
 		
 		return nuevaPersona;
 	}

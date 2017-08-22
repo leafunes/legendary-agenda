@@ -18,7 +18,7 @@ public abstract class BaseComboBoxModel<T> extends DefaultComboBoxModel<String>{
 	
 	public abstract void actualize(List<T> list);
 	
-	public T getSelectedLocalidad(){
+	public T getSelected(){
 		
 		String selected = (String)super.getSelectedItem();
 		

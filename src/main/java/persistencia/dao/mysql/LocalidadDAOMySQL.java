@@ -16,6 +16,7 @@ import org.jooq.Table;
 import org.jooq.impl.DSL;
 
 import dto.LocalidadDTO;
+import dto.PersonaDTO;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
 
@@ -24,6 +25,9 @@ public class LocalidadDAOMySQL implements LocalidadDAO {
 	private static LocalidadDAOMySQL instancia;
 	
 	private static Table<Record> LOCALIDADES = table("localidades");
+	private static Table<Record> PERSONAS = table("personas");
+	
+	private static Field<Integer> IDPERSONA = field("idPersona", Integer.class);
 	private static Field<Integer> IDLOCALIDAD = field("idLocalidad", Integer.class);
 	private static Field<String> NOMBRE = field("nombreLocalidad", String.class);
 	
@@ -77,6 +81,29 @@ public class LocalidadDAOMySQL implements LocalidadDAO {
 		}
 		
 		return toReturn;
+	}
+
+	@Override
+	public LocalidadDTO getLocalidadOf(PersonaDTO p) {
+		
+		LocalidadDTO toReturn = null;
+		
+		Result<Record> res = create.select()
+									.from(LOCALIDADES.join(PERSONAS)
+											.on(LOCALIDADES.field(IDLOCALIDAD).eq(PERSONAS.field(IDLOCALIDAD))))
+									.where(IDPERSONA.eq(p.getIdPersona()))
+									.fetch();
+		
+		for(Record r : res){
+			int id = r.getValue(IDLOCALIDAD);
+			String nombre = r.getValue(NOMBRE);
+			
+			toReturn = new LocalidadDTO(id, nombre);
+			
+		}
+		
+		return toReturn;
+		
 	}
 
 }

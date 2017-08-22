@@ -10,9 +10,10 @@ public class PersonaDTO
 	private DomicilioDTO domicilio;
 	private Date cumple;
 	private String email;
+	private TipoContactoDTO tipo;
 
 
-	public PersonaDTO(int idPersona, String nombre, String telefono,DomicilioDTO domicilio, Date cumple, String email) {
+	public PersonaDTO(int idPersona, String nombre, String telefono,DomicilioDTO domicilio, Date cumple, String email, TipoContactoDTO tipo) {
 		super();
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -20,6 +21,7 @@ public class PersonaDTO
 		this.domicilio = domicilio;
 		this.cumple = cumple;
 		this.email = email;
+		this.tipo = tipo;
 	}
 	
 
@@ -84,5 +86,17 @@ public class PersonaDTO
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+
+
+	public TipoContactoDTO getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(TipoContactoDTO tipo) {
+		this.tipo = tipo;
 	}
 }
