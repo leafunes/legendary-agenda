@@ -35,6 +35,7 @@ public class AgregaPersonaView extends JDialog
 	
 	private JDateChooser calendar;
 	private JTextField txtEmail;
+	private JComboBox<String> tipoCombo;
 
 	public AgregaPersonaView() 
 	{
@@ -134,9 +135,9 @@ public class AgregaPersonaView extends JDialog
 		lblTipoContacto.setBounds(12, 13, 118, 15);
 		panel.add(lblTipoContacto);
 		
-		JComboBox<String> comboBox = new JComboBox();
-		comboBox.setBounds(167, 6, 164, 24);
-		panel.add(comboBox);
+		tipoCombo = new JComboBox<>();
+		tipoCombo.setBounds(167, 6, 164, 24);
+		panel.add(tipoCombo);
 		
 		lblEmail = new JLabel("Email:");
 		lblEmail.setBounds(367, 97, 70, 15);
@@ -198,6 +199,10 @@ public class AgregaPersonaView extends JDialog
 
 	public JTextField getTxtEmail() {
 		return txtEmail;
+	}
+
+	public JComboBox<String> getTipoCombo() {
+		return tipoCombo;
 	}
 }
 

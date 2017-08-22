@@ -1,6 +1,6 @@
 package dto;
 
-import java.util.Date;
+import org.joda.time.DateTime;
 
 public class PersonaDTO 
 {
@@ -8,12 +8,12 @@ public class PersonaDTO
 	private String nombre;
 	private String telefono;
 	private DomicilioDTO domicilio;
-	private Date cumple;
+	private DateTime cumple;
 	private String email;
 	private TipoContactoDTO tipo;
 
 
-	public PersonaDTO(int idPersona, String nombre, String telefono,DomicilioDTO domicilio, Date cumple, String email, TipoContactoDTO tipo) {
+	public PersonaDTO(int idPersona, String nombre, String telefono,DomicilioDTO domicilio, DateTime cumple, String email, TipoContactoDTO tipo) {
 		super();
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -48,11 +48,11 @@ public class PersonaDTO
 
 
 
-	public Date getCumple() {
+	public DateTime getCumple() {
 		return cumple;
 	}
 
-	public void setCumple(Date cumple) {
+	public void setCumple(DateTime cumple) {
 		this.cumple = cumple;
 	}
 

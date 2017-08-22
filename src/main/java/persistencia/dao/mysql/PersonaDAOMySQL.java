@@ -1,10 +1,13 @@
 package persistencia.dao.mysql;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import dto.TipoContactoDTO;
+
+import org.joda.time.DateTime;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -41,11 +44,11 @@ public class PersonaDAOMySQL implements PersonaDAO
 	private static Field<Integer> DEPTO = field("departamentoPersona", Integer.class);
 	private static Field<Integer> IDLOCALIDAD = field("idLocalidad", Integer.class);
 	private static Field<String> EMAIL = field("emailPersona", String.class);
-	private static Field<Date> CUMPLE = field("cumplePersona", Date.class);
+	private static Field<String> CUMPLE = field("cumplePersona", String.class);
 	private static Field<Integer> IDTIPOCONTACTO = field("idTipoContacto", Integer.class);
 
-	private static Field<String> NOMBRECONTACTO = field("idTipoContacto", String.class);
-	private static Field<String> NOMBRELOCALIDAD = field("idTipoContacto", String.class);
+	private static Field<String> NOMBRECONTACTO = field("nombreTipo", String.class);
+	private static Field<String> NOMBRELOCALIDAD = field("nombreLocalidad", String.class);
 	
 	private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 	
@@ -77,7 +80,7 @@ public class PersonaDAOMySQL implements PersonaDAO
 						persona.getDomicilio().getDepto(),
 						persona.getDomicilio().getLocalidad().getId(),
 						persona.getEmail(),
-						persona.getCumple(),
+						persona.getCumple().toString(),
 						persona.getTipo().getId())
 				.execute();
 		
@@ -100,10 +103,8 @@ public class PersonaDAOMySQL implements PersonaDAO
 		List<PersonaDTO> toReturn = new ArrayList<>();
 		
 		Result<Record> res = create.select()
-									.from(PERSONAS.join(LOCALIDADES)
-											.on(PERSONAS.field(IDLOCALIDAD).eq(LOCALIDADES.field(IDLOCALIDAD)))
-													.join(TIPOS)
-											.on(PERSONAS.field(IDTIPOCONTACTO).eq(TIPOS.field(IDTIPOCONTACTO))))
+									.from(PERSONAS.naturalJoin(LOCALIDADES)
+												.naturalJoin(TIPOS))
 									.fetch();
 		
 		for(Record r : res){
@@ -116,7 +117,7 @@ public class PersonaDAOMySQL implements PersonaDAO
 			int depto = r.getValue(DEPTO);
 			int localidadID = r.getValue(IDLOCALIDAD);
 			String email = r.getValue(EMAIL);
-			Date cumple = r.getValue(CUMPLE);
+			DateTime cumple = new DateTime(r.getValue(CUMPLE));
 			int tipoID = r.getValue(IDTIPOCONTACTO);
 			
 			String nombrelocalidad = r.getValue(NOMBRELOCALIDAD);
@@ -151,7 +152,7 @@ public class PersonaDAOMySQL implements PersonaDAO
 							.set(DEPTO, newPersona.getDomicilio().getDepto())
 							.set(IDLOCALIDAD, newPersona.getDomicilio().getLocalidad().getId())
 							.set(EMAIL, newPersona.getEmail())
-							.set(CUMPLE,newPersona.getCumple())
+							.set(CUMPLE,newPersona.getCumple().toString())
 							.set(IDTIPOCONTACTO, newPersona.getTipo().getId())
 							.where(IDPERSONA.eq(oldPersona.getIdPersona()))
 							.execute();

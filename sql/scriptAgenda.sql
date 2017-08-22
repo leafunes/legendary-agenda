@@ -1,4 +1,4 @@
-
+DROP DATABASE agenda;
 CREATE DATABASE agenda;
 USE agenda;
 
@@ -30,7 +30,7 @@ CREATE TABLE personas
 	departamentoPersona int(11),
 	idLocalidad int(11) NOT NULL,
 	emailPersona varchar(45) NOT NULL,
-	cumplePersona date NOT NULL,
+	cumplePersona long NOT NULL,
 	idTipoContacto int(11) NOT NULL,
 	PRIMARY KEY (idPersona),
 	FOREIGN KEY (idLocalidad) REFERENCES localidades(idLocalidad),

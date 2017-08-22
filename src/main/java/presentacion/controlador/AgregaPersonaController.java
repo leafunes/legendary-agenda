@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 
+import org.joda.time.DateTime;
+
 import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
@@ -66,6 +68,9 @@ public class AgregaPersonaController {
 
 		comboModel.actualize(localidadService.obtenerAll());
 		view.getLocalidadCombo().setModel(comboModel);
+		
+		contactoComboModel.actualize(tipoContactoService.obtenerAll());
+		view.getTipoCombo().setModel(contactoComboModel);
 
 		view.getTxtNombre().setText("");
 		view.getTxtTelefono().setText("");
@@ -88,12 +93,14 @@ public class AgregaPersonaController {
 		
 		LocalidadDTO localidad = comboModel.getSelected();
 		
-		Date cumple = view.getCalendar().getDate();
+		DateTime cumple = new DateTime(view.getCalendar().getDate());
+		
+		System.out.println(view.getTxtAltura().getText());
 		
 		DomicilioDTO domicilio = new DomicilioDTO(view.getTxtCalle().getText(),
-												Integer.getInteger(view.getTxtAltura().getText()),
-												Integer.getInteger(view.getTxtPiso().getText()),
-												Integer.getInteger(view.getTxtDpto().getText()),
+												Integer.parseInt(view.getTxtAltura().getText()),
+												Integer.parseInt(view.getTxtPiso().getText()),
+												Integer.parseInt(view.getTxtDpto().getText()),
 												localidad);
 		
 		TipoContactoDTO tipo = contactoComboModel.getSelected();
