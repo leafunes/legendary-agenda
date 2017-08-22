@@ -56,6 +56,14 @@
         <version>1.9.0</version>
     </dependency>
     
+    <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+	<dependency>
+	    <groupId>com.toedter</groupId>
+	    <artifactId>jcalendar</artifactId>
+	    <version>1.4</version>
+	</dependency>
+    
+    
     <dependency>
 	    <groupId>org.mockito</groupId>
 	    <artifactId>mockito-core</artifactId>

@@ -1,0 +1,27 @@
+package presentacion.combo;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.DefaultComboBoxModel;
+
+import dto.LocalidadDTO;
+
+public abstract class BaseComboBoxModel<T> extends DefaultComboBoxModel<String>{
+	
+	Map<String, T> values;
+	
+	public BaseComboBoxModel() {
+		values = new HashMap<>();
+	}
+	
+	public abstract void actualize(List<T> list);
+	
+	public T getSelectedLocalidad(){
+		
+		String selected = (String)super.getSelectedItem();
+		
+		return values.get(selected);
+	}
+}

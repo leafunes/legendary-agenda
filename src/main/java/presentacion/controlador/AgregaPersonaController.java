@@ -1,8 +1,14 @@
 package presentacion.controlador;
 
+import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
+
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import modelo.LocalidadService;
 import modelo.PersonaService;
+import presentacion.combo.LocalidadComboModel;
 import presentacion.vista.AgregaPersonaView;
 
 public class AgregaPersonaController {
@@ -11,11 +17,14 @@ public class AgregaPersonaController {
 	private PersonaService personaService = PersonaService.getService();
 	private LocalidadService localidadService = LocalidadService.getService();
 	
+	private LocalidadComboModel comboModel;
+	
 	private PersonaDTO oldPersona;
 	
 	public AgregaPersonaController() {
 	
 		view = new AgregaPersonaView();
+		comboModel = new LocalidadComboModel();
 		
 		view.getBtnAgregarPersona().addActionListener(e -> crearContacto());
 		view.getBtnGuardar().addActionListener(e -> actualizeContacto());
@@ -55,7 +64,11 @@ public class AgregaPersonaController {
 	}
 	
 	public void showView(){
-
+		
+		comboModel.actualize(localidadService.obtenerAll());
+		
+		view.getLocalidadCombo().setModel(comboModel);
+		
 		view.setVisible(true);
 	}
 	
