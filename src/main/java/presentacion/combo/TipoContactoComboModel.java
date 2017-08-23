@@ -8,6 +8,8 @@ public class TipoContactoComboModel extends BaseComboBoxModel<TipoContactoDTO>{
 
 	@Override
 	public void actualize(List<TipoContactoDTO> list) {
+		this.removeAllElements();
+		
 		list.forEach(l -> this.addElement(l.getNombre()));
 		list.forEach(l -> values.put(l.getNombre(), l));
 		
