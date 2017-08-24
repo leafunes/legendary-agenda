@@ -4,12 +4,19 @@ import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.table;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoContactoDTO;
 
+import org.hibernate.Session;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -34,7 +41,16 @@ public class TipoContactoDAOMySQL implements TipoContactoDAO {
 
     private static final DSLContext create = DSL.using(Conexion.getConexion().getSQLConexion(), SQLDialect.MYSQL);
 
+    //////////////////
+    
+    EntityManagerFactory factory;
+    
+    /////////////////
+    
     private TipoContactoDAOMySQL(){
+    	
+    	
+    	factory = Persistence.createEntityManagerFactory("agenda");
 
     }
 
@@ -46,11 +62,14 @@ public class TipoContactoDAOMySQL implements TipoContactoDAO {
 
     @Override
     public boolean insert(TipoContactoDTO toInsert) {
-        int query = create.insertInto(TIPOCONTACTOS, IDTIPOCONTACTO, NOMBRE)
-                .values(toInsert.getId() , toInsert.getNombre())
-                .execute();
-
-        return query == 1;
+        EntityManager man = factory.createEntityManager();
+        man.getTransaction().begin();
+        
+        man.persist(toInsert);
+        
+        man.getTransaction().commit();
+        
+        return true;
     }
 
     @Override
