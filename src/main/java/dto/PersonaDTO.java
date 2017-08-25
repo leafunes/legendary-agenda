@@ -1,17 +1,43 @@
 package dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+@Entity
+@Table(name="personas")
 public class PersonaDTO 
 {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPersona;
+	
 	private String nombre;
 	private String telefono;
-	private DomicilioDTO domicilio;
+
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime cumple;
 	private String email;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private DomicilioDTO domicilio;
+	
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private TipoContactoDTO tipo;
 
+	private PersonaDTO(){
+		
+	}
 
 	public PersonaDTO(int idPersona, String nombre, String telefono,DomicilioDTO domicilio, DateTime cumple, String email, TipoContactoDTO tipo) {
 		super();

@@ -3,22 +3,18 @@ package persistencia.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Conexion 
 {
-	public static Conexion instancia;
-	private Connection conexion;
+	private static Conexion instancia;
+
+    private EntityManagerFactory factory;
 	
-	public Conexion()
-	{
-		try
-		{
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tpi_g7","root","root");
-			System.out.println("Conexion exitosa");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Conexion fallida");
-		}
+	public Conexion(){
+    	factory = Persistence.createEntityManagerFactory("agenda");
 	}
 	
 	public static Conexion getConexion()   
@@ -29,14 +25,13 @@ public class Conexion
 		}
 		return instancia;
 	}
-
-	public Connection getSQLConexion() 
-	{
-		return conexion;
+	
+	public EntityManager getEntityManager(){
+		return factory.createEntityManager();
 	}
 	
-	public void cerrarConexion()
+	public void cerrar()
 	{
-		instancia = null;
+		factory.close();
 	}
 }

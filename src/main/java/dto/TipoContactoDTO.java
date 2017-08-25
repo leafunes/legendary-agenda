@@ -13,11 +13,13 @@ public class TipoContactoDTO {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idTipoContacto")
     private int id;
 	
-	@Column(name="nombreTipo")
     private String nombre;
+    
+    private TipoContactoDTO(){
+    	
+    }
 
     public TipoContactoDTO(int id, String tipo){
         super();
@@ -40,4 +42,32 @@ public class TipoContactoDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TipoContactoDTO other = (TipoContactoDTO) obj;
+		if (id != other.id)
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
 }

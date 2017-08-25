@@ -3,16 +3,17 @@ package modelo;
 import java.util.List;
 import dto.PersonaDTO;
 import persistencia.dao.interfaz.PersonaDAO;
-import persistencia.dao.mysql.PersonaDAOMySQL;
+import persistencia.dao.jpa.PersonaDaoJPA;
 
 
 public class PersonaService extends BaseService<PersonaDTO>{
 	
 	private static PersonaService instancia;
 	
-	private PersonaDAO personaDao = PersonaDAOMySQL.getDAO();	
+	private PersonaDAO personaDao;// = PersonaDAOMySQL.getDAO();	
 	
 	private PersonaService(){
+		personaDao = new PersonaDaoJPA();
 		super.dao = personaDao;
 		
 	}

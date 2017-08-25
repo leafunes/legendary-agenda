@@ -1,13 +1,34 @@
 package dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="domicilios")
 public class DomicilioDTO
 {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
 	private String calle;
 	private int altura;
 	private Integer piso;
 	private Integer depto;
+	
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private LocalidadDTO localidad;
 	
+	private DomicilioDTO(){
+		
+	}
 	
 	public DomicilioDTO(String calle, int altura, Integer piso, Integer depto, LocalidadDTO localidad) {
 		super();
@@ -61,6 +82,16 @@ public class DomicilioDTO
 		
 		return toRet;
 		
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
