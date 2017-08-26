@@ -30,7 +30,7 @@ public class PersonasTableModel extends BaseTableModel<PersonaDTO>{
 						t.getNombre(),
 						t.getTelefono(),
 						domicilio,
-						t.getCumple().toString("dd/MM"),
+						t.getCumple().toString("dd/MM/YYYY"),
 						t.getEmail()};
 		
 		return fila;

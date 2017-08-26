@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import dto.PersonaDTO;
+import dto.reportes.PersonaReporteDTO;
 
 public class ReporteAgenda
 {
@@ -23,11 +24,11 @@ public class ReporteAgenda
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 	
-	private final static String jasperTemplate = "reportes"+File.separatorChar+"ReporteAgenda.jrxml";
-	private final static String reporteLocation = "reportes"+File.separatorChar+"ReporteAgenda.jasper";
+	private final static String jasperTemplate = "reportes"+File.separatorChar+"test.jrxml";
+	private final static String reporteLocation = "reportes"+File.separatorChar+"test.jasper";
 	
 	//Recibe la lista de personas para armar el reporte
-    public ReporteAgenda(List<PersonaDTO> personas)
+    public ReporteAgenda(List<PersonaReporteDTO> personas)
     {
     	//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();

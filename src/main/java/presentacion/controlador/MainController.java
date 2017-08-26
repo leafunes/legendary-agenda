@@ -83,7 +83,7 @@ public class MainController{
 		}
 		
 		private void mostrarReporte(){
-			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerAll());
+			ReporteAgenda reporte = new ReporteAgenda(agenda.getPersonasReporte());
 			reporte.mostrar();
 		}
 
