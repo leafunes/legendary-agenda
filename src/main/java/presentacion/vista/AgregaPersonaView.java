@@ -57,7 +57,7 @@ public class AgregaPersonaView extends JDialog
 		panel.setLayout(null);
 		
 		calendar = new JDateChooser();
-		calendar.setDateFormatString("dd/MM");
+		calendar.setDateFormatString("dd/MM/YYYY");
 		calendar.setBounds(167, 100, 164, 20);
 		panel.add(calendar);
 		
