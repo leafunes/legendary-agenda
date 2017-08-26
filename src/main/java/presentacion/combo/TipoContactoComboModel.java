@@ -17,9 +17,18 @@ public class TipoContactoComboModel extends BaseComboBoxModel<TipoContactoDTO>{
 
 	@Override
 	public void setSelected(TipoContactoDTO toSelect) {
+		
+		if(toSelect == null){
+			this.setSelectedItem(null);
+		}
+		
+		else{
+			
 		String nombre = toSelect.getNombre();
 		
 		this.setSelectedItem(nombre);
+
+		}
 		
 	}
 	

@@ -20,9 +20,16 @@ public class LocalidadComboModel extends BaseComboBoxModel<LocalidadDTO>{
 	@Override
 	public void setSelected(LocalidadDTO toSelect) {
 		
+		if(toSelect == null){
+			this.setSelectedItem(null);
+		}
+		else{
+			
 		String nombre = toSelect.getNombre();
 		
 		this.setSelectedItem(nombre);
+		
+		}
 		
 	}
 

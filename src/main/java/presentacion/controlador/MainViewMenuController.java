@@ -30,7 +30,6 @@ public class MainViewMenuController {
 	}
 
 	private void showTipoContactoView(){
-		System.out.println("holi");
 		tipoContactoController.showView();
 	}
 

@@ -29,7 +29,7 @@ public class AgregaPersonaController {
 	private LocalidadComboModel comboModel;
 	private TipoContactoComboModel contactoComboModel;
 	
-	private PersonaDTO oldPersona;
+	private PersonaDTO currentPersona;
 	
 	private Binder<PersonaDTO> binder;
 	
@@ -40,16 +40,45 @@ public class AgregaPersonaController {
 		contactoComboModel = new TipoContactoComboModel();
 		binder = new Binder<>();
 		
-		binder.bind("nombre", view.getTxtNombre()::getText);
-		binder.bind("telefono", view.getTxtTelefono()::getText);
-		binder.bind("cumple", () -> new DateTime(view.getCalendar().getDate()));
-		binder.bind("email", view.getTxtEmail()::getText);
-		binder.bind("tipo", contactoComboModel::getSelected);
-		binder.bind("domicilio.calle", view.getTxtCalle()::getText);
-		binder.bind("domicilio.altura", view.getTxtAltura()::getText);
-		binder.bind("domicilio.piso", view.getTxtPiso()::getText);
-		binder.bind("domicilio.depto", view.getTxtDpto()::getText);
-		binder.bind("domicilio.localidad", comboModel::getSelected);
+		binder.bind("nombre", 
+				view.getTxtNombre()::getText,
+				t -> view.getTxtNombre().setText((String)t));
+		
+		binder.bind("telefono",
+				view.getTxtTelefono()::getText, 
+				t -> view.getTxtTelefono().setText((String)t));
+		
+		binder.bind("cumple", 
+				() -> new DateTime(view.getCalendar().getDate()),
+				d -> view.getCalendar().setDate(((DateTime)d).toDate()));
+		
+		binder.bind("email", 
+				view.getTxtEmail()::getText,
+				t -> view.getTxtEmail().setText((String)t));
+		
+		binder.bind("tipo",
+				contactoComboModel::getSelected,
+				t -> contactoComboModel.setSelected((TipoContactoDTO)t));
+		
+		binder.bind("domicilio.calle",
+				view.getTxtCalle()::getText,
+				t -> view.getTxtCalle().setText((String)t));
+		
+		binder.bind("domicilio.altura",
+				view.getTxtAltura()::getText,
+				t -> view.getTxtAltura().setText((String)t));
+		
+		binder.bind("domicilio.piso",
+				view.getTxtPiso()::getText,
+				t -> view.getTxtPiso().setText((String)t));
+		
+		binder.bind("domicilio.depto",
+				view.getTxtDpto()::getText,
+				t -> view.getTxtDpto().setText((String)t));
+		
+		binder.bind("domicilio.localidad",
+				comboModel::getSelected,
+				l -> comboModel.setSelected((LocalidadDTO)l));
 		
 		view.getBtnAgregarPersona().addActionListener(e -> crearContacto());
 		view.getBtnGuardar().addActionListener(e -> actualizeContacto());
@@ -59,15 +88,16 @@ public class AgregaPersonaController {
 	
 	private void crearContacto(){
 		if(fieldsOk()){
-			this.personaService.agregar(getNewPersonaDTO());
+			binder.fillBean();
+			this.personaService.agregar(currentPersona);
 			this.closeView();
 		}
 	}
 	
 	private void actualizeContacto(){
 		if(fieldsOk()){
-			actualizeOldPersona();
-			personaService.actualizePersona(oldPersona);
+			binder.fillBean();
+			personaService.actualizePersona(currentPersona);
 			this.closeView();
 		}
 	}
@@ -75,47 +105,23 @@ public class AgregaPersonaController {
 
 	public void editaPersona(PersonaDTO p){
 		view.setTitle("Editar Contacto");
-		fillCombos();
-		
-		oldPersona = p;
-		
-		comboModel.setSelected(p.getDomicilio().getLocalidad());
-		contactoComboModel.setSelected(p.getTipo());
-		
-		view.getCalendar().setDate(DateTime.now().toDate());
-		
-		String deptoStr = p.getDomicilio().getDepto() == null? "" : p.getDomicilio().getDepto().toString();
-		String pisoStr = p.getDomicilio().getPiso() == null? "" : p.getDomicilio().getPiso().toString();
-		
-		view.getTxtAltura().setText(p.getDomicilio().getAltura() + "");
-		view.getTxtCalle().setText(p.getDomicilio().getCalle());
-		view.getTxtDpto().setText(deptoStr);
-		view.getTxtEmail().setText(p.getEmail());
-		view.getTxtPiso().setText(pisoStr);
-		view.getTxtNombre().setText(p.getNombre());
-		view.getTxtTelefono().setText(p.getTelefono());
 		view.getBtnAgregarPersona().setVisible(false);
 		view.getBtnGuardar().setVisible(true);
+		fillCombos();
+		
+		currentPersona = p;
+		binder.setObjective(currentPersona);
+		binder.fillFields();
 	}
 	
 	public void agregaPersona(){
 		view.setTitle("Agregar Contacto");
-		fillCombos();
-		
-		comboModel.clearSelection();
-		contactoComboModel.clearSelection();
-		
-		view.getCalendar().setDate(DateTime.now().toDate());
-		
-		view.getTxtAltura().setText("");
-		view.getTxtCalle().setText("");
-		view.getTxtDpto().setText("");
-		view.getTxtEmail().setText("");
-		view.getTxtPiso().setText("");
-		view.getTxtNombre().setText("");
-		view.getTxtTelefono().setText("");
 		view.getBtnAgregarPersona().setVisible(true);
 		view.getBtnGuardar().setVisible(false);
+		fillCombos();
+
+		createNewPersona();
+		binder.fillFields();
 	}
 	
 	private void fillCombos(){
@@ -189,25 +195,19 @@ public class AgregaPersonaController {
 		
 	}
 	
-	private PersonaDTO getNewPersonaDTO(){
+	private void createNewPersona(){
 		
 		DomicilioDTO domicilio = new DomicilioDTO();
 		
 		PersonaDTO nuevaPersona = new PersonaDTO();
 		
 		nuevaPersona.setDomicilio(domicilio);
+		nuevaPersona.setCumple(DateTime.now());
 		
-		binder.setObjective(nuevaPersona);
-		binder.commit();
+		currentPersona = nuevaPersona;
 		
-		return nuevaPersona;
+		binder.setObjective(currentPersona);
 	}
-	
-	private void actualizeOldPersona(){
-		
-		binder.setObjective(oldPersona);
-		binder.commit();
-		
-	}
+
 	
 }
