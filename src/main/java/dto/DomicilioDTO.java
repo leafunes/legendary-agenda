@@ -19,18 +19,18 @@ public class DomicilioDTO
 	private int id;
 	
 	private String calle;
-	private int altura;
-	private Integer piso;
-	private Integer depto;
+	private String altura;
+	private String piso;
+	private String depto;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private LocalidadDTO localidad;
 	
-	private DomicilioDTO(){
+	public DomicilioDTO(){
 		
 	}
 	
-	public DomicilioDTO(String calle, int altura, Integer piso, Integer depto, LocalidadDTO localidad) {
+	public DomicilioDTO(String calle, String altura, String piso, String depto, LocalidadDTO localidad) {
 		super();
 		this.calle = calle;
 		this.altura = altura;
@@ -46,22 +46,22 @@ public class DomicilioDTO
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}
-	public int getAltura() {
+	public String getAltura() {
 		return altura;
 	}
-	public void setAltura(int altura) {
+	public void setAltura(String altura) {
 		this.altura = altura;
 	}
-	public Integer getPiso() {
+	public String getPiso() {
 		return piso;
 	}
-	public void setPiso(Integer piso) {
+	public void setPiso(String piso) {
 		this.piso = piso;
 	}
-	public Integer getDepto() {
+	public String getDepto() {
 		return depto;
 	}
-	public void setDepto(Integer depto) {
+	public void setDepto(String depto) {
 		this.depto = depto;
 	}
 	public LocalidadDTO getLocalidad() {
@@ -75,8 +75,9 @@ public class DomicilioDTO
 		
 		String toRet = calle + " al " + altura;
 		
-		if(piso != null) toRet += " Piso " + piso;
-		if(depto != null) toRet += " Dpto. " + depto;
+		
+		if(!piso.equals("")) toRet += " Piso " + piso;
+		if(!depto.equals("")) toRet += " Dpto. " + depto;
 		
 		toRet += ", " + localidad.getNombre();
 		

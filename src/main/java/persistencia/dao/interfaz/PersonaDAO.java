@@ -8,7 +8,7 @@ import dto.TipoContactoDTO;
 
 public interface PersonaDAO extends DAO<PersonaDTO>{
 	
-	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona);
+	public void actualizePersona(PersonaDTO toActualize);
 
 	public List<PersonaDTO> getAllWith(TipoContactoDTO contacto);
 

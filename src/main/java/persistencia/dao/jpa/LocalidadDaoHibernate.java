@@ -6,14 +6,28 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.Criteria;
 import org.hibernate.cfg.NotYetImplementedException;
 
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
+import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.LocalidadDAO;
 
-public class LocalidadDaoJPA extends DaoJPA<LocalidadDTO> implements LocalidadDAO{
-
+public class LocalidadDaoHibernate extends DaoHibernate<LocalidadDTO> implements LocalidadDAO{
+	
+	private static LocalidadDAO instancia;
+	
+	public static LocalidadDAO getDao(){
+		if(instancia == null)
+			instancia = new LocalidadDaoHibernate();
+		return instancia;
+	}
+	
+	private LocalidadDaoHibernate(){
+		
+	}
+	
 	@Override
 	public LocalidadDTO getLocalidadOf(PersonaDTO p) {
 		throw new NotYetImplementedException();
@@ -21,22 +35,13 @@ public class LocalidadDaoJPA extends DaoJPA<LocalidadDTO> implements LocalidadDA
 
 	@Override
 	public List<LocalidadDTO> readAll() {
-		
-		List<LocalidadDTO> toReturn = new ArrayList<>();
-		
 		initTransaction();
 		
-		CriteriaQuery<LocalidadDTO> query = builder.createQuery(LocalidadDTO.class);
-		
-		query.from(LocalidadDTO.class);
-		
-		List<LocalidadDTO> resultados = entityManager.createQuery(query).getResultList();
-		
-		toReturn.addAll(resultados);
-		
+		Criteria query = sesion.createCriteria(LocalidadDTO.class);
+				
 		finishTransaction();
 		
-		return toReturn;
+		return query.list();
 	}
 
 }

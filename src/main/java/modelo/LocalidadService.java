@@ -5,19 +5,17 @@ import dto.LocalidadDTO;
 import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
-import persistencia.dao.jpa.LocalidadDaoJPA;
-import persistencia.dao.jpa.PersonaDaoJPA;
+import persistencia.dao.jpa.LocalidadDaoHibernate;
+import persistencia.dao.jpa.PersonaDaoHibernate;
 
 public class LocalidadService extends BaseService<LocalidadDTO>{
 	
 	private static LocalidadService instancia;
 	
-	private LocalidadDAO localidadDao;// = LocalidadDAOMySQL.getDAO();
-	private PersonaDAO personaDao;// = PersonaDAOMySQL.getDAO();
+	private LocalidadDAO localidadDao = LocalidadDaoHibernate.getDao();
+	private PersonaDAO personaDao = PersonaDaoHibernate.getDao();
 	
 	private LocalidadService(){
-		localidadDao = new LocalidadDaoJPA();
-		personaDao = new PersonaDaoJPA();
 		super.dao = localidadDao;
 	}
 	

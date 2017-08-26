@@ -5,15 +5,29 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.Criteria;
 import org.hibernate.cfg.NotYetImplementedException;
 
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.LocalidadDAO;
+import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.interfaz.TipoContactoDAO;
 
-public class TipoContactoDaoJPA extends DaoJPA<TipoContactoDTO> implements TipoContactoDAO{
+public class TipoContactoDaoHibernate extends DaoHibernate<TipoContactoDTO> implements TipoContactoDAO{
+	
+	private static TipoContactoDAO instancia;
+	
+	public static TipoContactoDAO getDao(){
+		if(instancia == null)
+			instancia = new TipoContactoDaoHibernate();
+		return instancia;
+	}
+	
+	private TipoContactoDaoHibernate(){
+		
+	}
 
 	@Override
 	public TipoContactoDTO getTipoOf(PersonaDTO p) {
@@ -23,21 +37,13 @@ public class TipoContactoDaoJPA extends DaoJPA<TipoContactoDTO> implements TipoC
 	@Override
 	public List<TipoContactoDTO> readAll() {
 		
-		List<TipoContactoDTO> toReturn = new ArrayList<>();
-		
 		initTransaction();
 		
-		CriteriaQuery<TipoContactoDTO> query = builder.createQuery(TipoContactoDTO.class);
-		
-		query.from(TipoContactoDTO.class);
-		
-		List<TipoContactoDTO> resultados = entityManager.createQuery(query).getResultList();
-		
-		toReturn.addAll(resultados);
-		
+		Criteria query = sesion.createCriteria(TipoContactoDTO.class);
+				
 		finishTransaction();
 		
-		return toReturn;
+		return query.list();
 	}
 
 }

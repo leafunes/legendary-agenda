@@ -35,7 +35,7 @@ public class PersonaDTO
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private TipoContactoDTO tipo;
 
-	private PersonaDTO(){
+	public PersonaDTO(){
 		
 	}
 

@@ -3,17 +3,16 @@ package modelo;
 import java.util.List;
 import dto.PersonaDTO;
 import persistencia.dao.interfaz.PersonaDAO;
-import persistencia.dao.jpa.PersonaDaoJPA;
+import persistencia.dao.jpa.PersonaDaoHibernate;
 
 
 public class PersonaService extends BaseService<PersonaDTO>{
 	
 	private static PersonaService instancia;
 	
-	private PersonaDAO personaDao;// = PersonaDAOMySQL.getDAO();	
+	private PersonaDAO personaDao = PersonaDaoHibernate.getDao();	
 	
 	private PersonaService(){
-		personaDao = new PersonaDaoJPA();
 		super.dao = personaDao;
 		
 	}
@@ -25,8 +24,10 @@ public class PersonaService extends BaseService<PersonaDTO>{
 	}
 
 	
-	public void actualizePersona(PersonaDTO oldPersona, PersonaDTO newPersona){
-		personaDao.actualizePersona(oldPersona, newPersona);
+	public void actualizePersona(PersonaDTO oldPersona){
+		
+		personaDao.actualizePersona(oldPersona);
 	}
+	
 	
 }

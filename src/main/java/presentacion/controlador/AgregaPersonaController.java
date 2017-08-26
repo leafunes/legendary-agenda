@@ -31,11 +31,25 @@ public class AgregaPersonaController {
 	
 	private PersonaDTO oldPersona;
 	
+	private Binder<PersonaDTO> binder;
+	
 	public AgregaPersonaController() {
 	
 		view = new AgregaPersonaView();
 		comboModel = new LocalidadComboModel();
 		contactoComboModel = new TipoContactoComboModel();
+		binder = new Binder<>();
+		
+		binder.bind("nombre", view.getTxtNombre()::getText);
+		binder.bind("telefono", view.getTxtTelefono()::getText);
+		binder.bind("cumple", () -> new DateTime(view.getCalendar().getDate()));
+		binder.bind("email", view.getTxtEmail()::getText);
+		binder.bind("tipo", contactoComboModel::getSelected);
+		binder.bind("domicilio.calle", view.getTxtCalle()::getText);
+		binder.bind("domicilio.altura", view.getTxtAltura()::getText);
+		binder.bind("domicilio.piso", view.getTxtPiso()::getText);
+		binder.bind("domicilio.depto", view.getTxtDpto()::getText);
+		binder.bind("domicilio.localidad", comboModel::getSelected);
 		
 		view.getBtnAgregarPersona().addActionListener(e -> crearContacto());
 		view.getBtnGuardar().addActionListener(e -> actualizeContacto());
@@ -52,11 +66,13 @@ public class AgregaPersonaController {
 	
 	private void actualizeContacto(){
 		if(fieldsOk()){
-			personaService.actualizePersona(oldPersona, getNewPersonaDTO());
+			actualizeOldPersona();
+			personaService.actualizePersona(oldPersona);
 			this.closeView();
 		}
 	}
-	
+
+
 	public void editaPersona(PersonaDTO p){
 		view.setTitle("Editar Contacto");
 		fillCombos();
@@ -175,29 +191,23 @@ public class AgregaPersonaController {
 	
 	private PersonaDTO getNewPersonaDTO(){
 		
-		LocalidadDTO localidad = comboModel.getSelected();
+		DomicilioDTO domicilio = new DomicilioDTO();
 		
-		DateTime cumple = new DateTime(view.getCalendar().getDate());
+		PersonaDTO nuevaPersona = new PersonaDTO();
 		
-		Integer detpo = view.getTxtDpto().getText().isEmpty()? null:Integer.parseInt(view.getTxtDpto().getText());
-		Integer piso = view.getTxtPiso().getText().isEmpty()? null:Integer.parseInt(view.getTxtPiso().getText());
+		nuevaPersona.setDomicilio(domicilio);
 		
-		DomicilioDTO domicilio = new DomicilioDTO(view.getTxtCalle().getText(),
-												Integer.parseInt(view.getTxtAltura().getText()),
-												detpo,
-												piso,
-												localidad);
-		
-		TipoContactoDTO tipo = contactoComboModel.getSelected();
-		
-		PersonaDTO nuevaPersona = new PersonaDTO(0,this.view.getTxtNombre().getText(),
-													view.getTxtTelefono().getText(),
-													domicilio,
-													cumple,
-													view.getTxtEmail().getText(),
-													tipo);
+		binder.setObjective(nuevaPersona);
+		binder.commit();
 		
 		return nuevaPersona;
+	}
+	
+	private void actualizeOldPersona(){
+		
+		binder.setObjective(oldPersona);
+		binder.commit();
+		
 	}
 	
 }
