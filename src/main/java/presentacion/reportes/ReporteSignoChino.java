@@ -18,18 +18,17 @@ import net.sf.jasperreports.view.JasperViewer;
 import dto.PersonaDTO;
 import dto.reportes.PersonaReporteDTO;
 
-public class ReporteAgenda
-{
+public class ReporteSignoChino{
+	
 	private JasperReport reporte;
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 	
-	private final static String jasperTemplate = "reportes"+File.separatorChar+"test.jrxml";
-	private final static String reporteLocation = "reportes"+File.separatorChar+"test.jasper";
+	private final static String jasperTemplate = "reportes"+File.separatorChar+"ReporteSignoChino.jrxml";
+	private final static String reporteLocation = "reportes"+File.separatorChar+"ReporteSignoChino.jasper";
 	
 	//Recibe la lista de personas para armar el reporte
-    public ReporteAgenda(List<PersonaReporteDTO> personas)
-    {
+    public ReporteSignoChino(List<PersonaReporteDTO> personas){
     	//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
@@ -49,9 +48,9 @@ public class ReporteAgenda
 		}
     }       
     
-    public void mostrar()
-	{
+    public void mostrar(){
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
+		this.reporteViewer.setTitle("Reporte Contactos - Signo Chino");
 		this.reporteViewer.setVisible(true);
 	}
    

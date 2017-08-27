@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import modelo.PersonaService;
-import presentacion.reportes.ReporteAgenda;
+import presentacion.reportes.ReporteSignoChino;
 import presentacion.table.PersonasTableModel;
 import presentacion.vista.AgregaPersonaView;
 import presentacion.vista.MainView;
@@ -83,7 +83,7 @@ public class MainController{
 		}
 		
 		private void mostrarReporte(){
-			ReporteAgenda reporte = new ReporteAgenda(agenda.getPersonasReporte());
+			ReporteSignoChino reporte = new ReporteSignoChino(agenda.getPersonasReporte());
 			reporte.mostrar();
 		}
 
