@@ -18,6 +18,9 @@ public class PersonaReporteDTO {
 	};
 	
 	private String nombre;
+	private String telefono;
+	private String tipoContacto;
+	private String direccion;
 	private SignoChino signo;
 	
 	public PersonaReporteDTO() {
@@ -38,6 +41,30 @@ public class PersonaReporteDTO {
 
 	public void setSigno(SignoChino signo) {
 		this.signo = signo;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getTipoContacto() {
+		return tipoContacto;
+	}
+
+	public void setTipoContacto(String tipoContacto) {
+		this.tipoContacto = tipoContacto;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 }

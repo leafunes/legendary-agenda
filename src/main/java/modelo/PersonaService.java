@@ -44,6 +44,9 @@ public class PersonaService extends BaseService<PersonaDTO>{
 			
 			toAdd.setNombre(p.getNombre());
 			toAdd.setSigno(getSignoOf(p));
+			toAdd.setTelefono(p.getTelefono());
+			toAdd.setDireccion(p.getDomicilio().toString());
+			toAdd.setTipoContacto(p.getTipo().getNombre());
 			
 			toReturn.add(toAdd);
 		}
