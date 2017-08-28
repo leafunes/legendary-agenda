@@ -170,7 +170,7 @@
 				<textField>
 					<reportElement x="340" y="11" width="100" height="30" uuid="8855e984-c1e5-4d97-92f7-d475e02589cb"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
 					<reportElement x="440" y="11" width="100" height="30" uuid="155b4e1d-a2d5-48c6-81cd-ee74639e93fd"/>
@@ -206,7 +206,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="16" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Distribuci�n de los signos del Zood�aco Chino]]></text>
+					<text><![CDATA[Distribución de los signos del Zoodíaco Chino]]></text>
 				</staticText>
 				<line>
 					<reportElement x="-2" y="50" width="555" height="1" uuid="c60ae6e6-5fc1-48ba-b354-4973e79565e9">
