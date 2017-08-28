@@ -1,5 +1,7 @@
 package presentacion.vista;
 
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -7,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JList;
 
 public class AgregaLocalidadView extends JDialog{
 	
@@ -22,34 +26,25 @@ public class AgregaLocalidadView extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		
-		setBounds(100, 100, 343, 183);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 341, 158);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNombreYApellido = new JLabel("Localidad:");
-		lblNombreYApellido.setBounds(12, 63, 137, 14);
-		panel.add(lblNombreYApellido);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(165, 57, 164, 20);
-		panel.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		
-		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(234, 123, 95, 23);
-		panel.add(btnAgregar);
-		
-		
+	    setSize(new Dimension(345, 185));
+		setResizable(false);
+	    
+	    contentPane = new JPanel();
+	    setContentPane(contentPane);
+	    contentPane.setLayout(new MigLayout("fill", "[][][][][][][]", "[][][pref!][][pref!]"));
+	    
+	    JLabel lblLocalidad = new JLabel("Localidad: ");
+	    contentPane.add(lblLocalidad, "cell 1 2,alignx trailing");
+	    
+	    txtNombre = new JTextField();
+	    txtNombre.setColumns(10);
+	    contentPane.add(txtNombre, "cell 2 2 4 1,growx");
+	    
+	    btnAgregar = new JButton("Agregar");
+	    contentPane.add(btnAgregar, "cell 5 4");
+	    
 		this.setLocationRelativeTo(null);
+
 		
 	}
 	

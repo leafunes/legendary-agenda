@@ -1,7 +1,9 @@
 package presentacion.vista;
 
+import java.awt.Dimension;
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import net.miginfocom.swing.MigLayout;
 
 public class AgregaTipoContactoView extends JDialog {
 
@@ -17,34 +19,24 @@ public class AgregaTipoContactoView extends JDialog {
 	
 	    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    setModal(true);
+	    setSize(new Dimension(345, 185));
+		setResizable(false);
 	
-	    setBounds(100, 100, 343, 183);
 	    contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	    setContentPane(contentPane);
-		contentPane.setLayout(null);
-	
-	    JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 341, 158);
-		contentPane.add(panel);
-		panel.setLayout(null);
-	
-	    JLabel lblNombreYApellido = new JLabel("Tipo de contacto:");
-		lblNombreYApellido.setBounds(12, 63, 137, 14);
-		panel.add(lblNombreYApellido);
-	
+	    contentPane.setLayout(new MigLayout("fill", "[][][][][][][]", "[][][][][pref!]"));
+	    
+	    JLabel lblTipoDeContacto = new JLabel("Tipo de contacto: ");
+	    contentPane.add(lblTipoDeContacto, "cell 1 2,alignx trailing");
+	    
 	    txtNombre = new JTextField();
-		txtNombre.setBounds(165, 57, 164, 20);
-		panel.add(txtNombre);
-		txtNombre.setColumns(10);
-	
-	
+	    txtNombre.setColumns(10);
+	    contentPane.add(txtNombre, "cell 2 2 4 1,growx");
+	    
 	    btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(234, 123, 95, 23);
-		panel.add(btnAgregar);
-		
+	    contentPane.add(btnAgregar, "cell 5 4");
+	    
 		this.setLocationRelativeTo(null);
-	
 }
 
     public JTextField getTxtNombre()

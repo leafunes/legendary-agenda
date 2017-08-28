@@ -66,7 +66,6 @@ public class MainView
 		panel.add(spPersonas);
 		
 		tablaPersonas = new JTable();
-		
 		spPersonas.setViewportView(tablaPersonas);
 		
 		panelButtons = new JPanel();
@@ -77,8 +76,8 @@ public class MainView
 		glue = Box.createGlue();
 		panelButtons.add(glue);
 		
-		btnReporte = new JButton("Reporte");
-		panelButtons.add(btnReporte);
+		btnAgregar = new JButton("Agregar");
+		panelButtons.add(btnAgregar);
 		
 		glue_1 = Box.createGlue();
 		panelButtons.add(glue_1);
@@ -95,8 +94,8 @@ public class MainView
 		glue_3 = Box.createGlue();
 		panelButtons.add(glue_3);
 		
-		btnAgregar = new JButton("Agregar");
-		panelButtons.add(btnAgregar);
+		btnReporte = new JButton("Reporte");
+		panelButtons.add(btnReporte);
 		
 		glue_4 = Box.createGlue();
 		panelButtons.add(glue_4);

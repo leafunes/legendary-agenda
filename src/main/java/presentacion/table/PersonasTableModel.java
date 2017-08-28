@@ -19,8 +19,6 @@ public class PersonasTableModel extends BaseTableModel<PersonaDTO>{
 		
 	}
 	
-
-	
 	@Override
 	protected Object[] toRow(PersonaDTO t){
 		

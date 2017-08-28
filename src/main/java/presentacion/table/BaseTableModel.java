@@ -75,6 +75,12 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 		return colModel;
 	}
 	
+    @Override
+    public boolean isCellEditable(int row, int column) {
+       //all cells false
+       return false;
+    }
+	
 	protected abstract Object[] toRow(T t);
 
 	
