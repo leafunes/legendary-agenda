@@ -48,6 +48,9 @@ public class AgregaLocalidadView extends JDialog{
 		btnAgregar.setBounds(234, 123, 95, 23);
 		panel.add(btnAgregar);
 		
+		
+		this.setLocationRelativeTo(null);
+		
 	}
 	
 	public JTextField getTxtNombre() 

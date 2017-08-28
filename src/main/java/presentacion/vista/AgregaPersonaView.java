@@ -152,6 +152,8 @@ public class AgregaPersonaView extends JDialog
 		panel.add(txtEmail);
 		txtEmail.setColumns(10);
 		
+		this.setLocationRelativeTo(null);
+		
 	}
 	
 	public JTextField getTxtNombre() 
