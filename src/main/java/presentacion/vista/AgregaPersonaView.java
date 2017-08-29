@@ -133,8 +133,7 @@ public class AgregaPersonaView extends JDialog
 		txtCalle = new JTextField();
 		panel.add(txtCalle, "cell 1 4,grow");
 		txtCalle.setColumns(10);
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tipoCombo, txtNombre, txtTelefono, calendar, txtCalle, txtAltura, txtPiso, txtDpto, localidadCombo, txtEmail, lblTipoContacto, lblNombreYApellido, lblTelfono, lblCumpleaos, lblCalle, lblAltura, lblPiso, lblLocalidad, lblEmail, calendar.getCalendarButton(), lblDpto}));
-		
+	
 		panelButtons = new JPanel();
 		panelButtons.setBounds(5, 185, 638, 44);
 		contentPane.add(panelButtons);
