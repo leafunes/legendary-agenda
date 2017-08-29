@@ -54,6 +54,8 @@ public class ListadoLocalidadesView extends JDialog {
 		
 		btnBorrar = new JButton("Borrar");
 		panelButtons.add(btnBorrar);
+		
+        setLocationRelativeTo(null);
 	}
 
 

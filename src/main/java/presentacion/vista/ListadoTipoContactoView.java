@@ -35,16 +35,18 @@ public class ListadoTipoContactoView extends JDialog {
         
         panelButtons = new JPanel();
         contentPane.add(panelButtons);
-                panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        
-                btnAgregar = new JButton("Agregar");
-                panelButtons.add(btnAgregar);
-                        
-                        horizontalStrut = Box.createHorizontalStrut(50);
-                        panelButtons.add(horizontalStrut);
+        panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+        btnAgregar = new JButton("Agregar");
+        panelButtons.add(btnAgregar);
                 
-                        btnBorrar = new JButton("Borrar");
-                        panelButtons.add(btnBorrar);
+        horizontalStrut = Box.createHorizontalStrut(50);
+        panelButtons.add(horizontalStrut);
+
+        btnBorrar = new JButton("Borrar");
+        panelButtons.add(btnBorrar);
+        
+        setLocationRelativeTo(null);
     }
 
 
