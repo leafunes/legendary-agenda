@@ -153,7 +153,7 @@ public class AgregaPersonaView extends JDialog
 		btnGuardar.setVisible(false);
 		
 		this.setLocationRelativeTo(null);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tipoCombo, txtNombre, txtTelefono, calendar, calendar.getCalendarButton(), txtCalle, txtAltura, txtPiso, txtDpto, localidadCombo, txtEmail, btnGuardar, btnAgregarPersona, contentPane, panel, lblTipoContacto, lblAltura, lblNombreYApellido, lblPiso, lblDpto, lblTelfono, lblLocalidad, lblCumpleaos, lblEmail, lblCalle, panelButtons, glue, horizontalStrut}));
+//		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tipoCombo, txtNombre, txtTelefono, calendar, calendar.getCalendarButton(), txtCalle, txtAltura, txtPiso, txtDpto, localidadCombo, txtEmail, btnGuardar, btnAgregarPersona, contentPane, panel, lblTipoContacto, lblAltura, lblNombreYApellido, lblPiso, lblDpto, lblTelfono, lblLocalidad, lblCumpleaos, lblEmail, lblCalle, panelButtons, glue, horizontalStrut}));
 		
 	}
 	
