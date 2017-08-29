@@ -30,10 +30,10 @@
 				<frame>
 					<reportElement x="-10" y="0" width="570" height="30" uuid="b194a685-c3dc-4098-bc34-832179a4968b"/>
 					<rectangle>
-						<reportElement x="0" y="0" width="570" height="30" forecolor="#ADACAC" backcolor="#ADACAC" uuid="f3d39d27-7c57-4817-82f9-cef9f9950e4a"/>
+						<reportElement x="10" y="0" width="555" height="30" forecolor="#8FBCFF" backcolor="#8FBCFF" uuid="f3d39d27-7c57-4817-82f9-cef9f9950e4a"/>
 					</rectangle>
 					<textField>
-						<reportElement x="0" y="0" width="80" height="30" uuid="85029f91-6640-42a3-82a2-29c72c849f27"/>
+						<reportElement x="10" y="0" width="70" height="30" uuid="85029f91-6640-42a3-82a2-29c72c849f27"/>
 						<textElement textAlignment="Center" verticalAlignment="Middle"/>
 						<textFieldExpression><![CDATA[$F{signoStr}]]></textFieldExpression>
 					</textField>
@@ -73,9 +73,9 @@
 			<frame>
 				<reportElement x="0" y="0" width="555" height="81" forecolor="#50A697" backcolor="#50A697" uuid="6fa39a0a-f703-47e1-a4f0-89fa1bbce13b"/>
 				<staticText>
-					<reportElement x="0" y="0" width="555" height="81" uuid="bfa7fff5-41e8-4949-9d41-a9905c57bf70"/>
+					<reportElement x="280" y="0" width="270" height="60" uuid="bfa7fff5-41e8-4949-9d41-a9905c57bf70"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="20" isBold="true" isItalic="false"/>
+						<font fontName="SansSerif" size="20" isBold="true" isItalic="false"/>
 					</textElement>
 					<text><![CDATA[Reporte de Contactos]]></text>
 				</staticText>
@@ -88,6 +88,10 @@
 					<reportElement x="445" y="60" width="110" height="20" uuid="73b593f8-fa5f-417d-8635-91fb203209b6"/>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
+				<image>
+					<reportElement x="0" y="10" width="210" height="50" uuid="dac77e0e-8ca8-4aee-abe5-efe72fe65207"/>
+					<imageExpression><![CDATA["http://www.ungs.edu.ar/ms_ico/wp-content/uploads/2016/08/LogoNuevoUNGS.jpg"]]></imageExpression>
+				</image>
 			</frame>
 		</band>
 	</title>
