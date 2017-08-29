@@ -2,6 +2,7 @@ package presentacion.vista;
 
 
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Dimension;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -16,6 +17,12 @@ import com.toedter.calendar.*;
 
 import presentacion.controlador.MainController;
 import javax.swing.JComboBox;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.GridLayout;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class AgregaPersonaView extends JDialog 
 {
@@ -36,6 +43,8 @@ public class AgregaPersonaView extends JDialog
 	private JDateChooser calendar;
 	private JTextField txtEmail;
 	private JComboBox<String> tipoCombo;
+	private JPanel panelButtons;
+	private Component glue;
 
 	public AgregaPersonaView() 
 	{
@@ -44,115 +53,108 @@ public class AgregaPersonaView extends JDialog
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
+		setSize(new Dimension(650, 260));
+		setResizable(false);
 		
-		setBounds(100, 100, 650, 257);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 648, 220);
+		panel.setBounds(5, 0, 638, 185);
 		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		calendar = new JDateChooser();
-		calendar.setBounds(167, 100, 164, 20);
-		panel.add(calendar);
-		
-		JLabel lblNombreYApellido = new JLabel("Nombre y apellido:");
-		lblNombreYApellido.setBounds(12, 44, 137, 14);
-		panel.add(lblNombreYApellido);
-		
-		JLabel lblTelfono = new JLabel("Teléfono:");
-		lblTelfono.setBounds(12, 70, 113, 14);
-		panel.add(lblTelfono);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(167, 42, 164, 20);
-		panel.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		txtTelefono = new JTextField();
-		txtTelefono.setBounds(167, 68, 164, 20);
-		panel.add(txtTelefono);
-		txtTelefono.setColumns(10);
-		
-		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.setBounds(268, 172, 95, 23);
-		panel.add(btnAgregarPersona);
-		
-		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(268, 172, 95, 23);
-		btnGuardar.setVisible(false);
-		panel.add(btnGuardar);
-		
-		JLabel lblLocalidad = new JLabel("Localidad: ");
-		lblLocalidad.setBounds(367, 70, 95, 15);
-		panel.add(lblLocalidad);
-		
-		localidadCombo = new JComboBox<>();
-		localidadCombo.setBounds(453, 65, 164, 24);
-		panel.add(localidadCombo);
-		
-		JLabel lblCalle = new JLabel("Calle:");
-		lblCalle.setBounds(12, 125, 70, 15);
-		panel.add(lblCalle);
-		
-		JLabel lblAltura = new JLabel("Altura:");
-		lblAltura.setBounds(367, 14, 70, 15);
-		panel.add(lblAltura);
-		
-		JLabel lblPiso = new JLabel("Piso:");
-		lblPiso.setBounds(367, 44, 70, 15);
-		panel.add(lblPiso);
-		
-		JLabel lblDpto = new JLabel("Dpto.:");
-		lblDpto.setBounds(516, 44, 70, 15);
-		panel.add(lblDpto);
-		
-		txtCalle = new JTextField();
-		txtCalle.setBounds(167, 123, 164, 19);
-		panel.add(txtCalle);
-		txtCalle.setColumns(10);
-		
-		txtAltura = new JTextField();
-		txtAltura.setBounds(453, 12, 164, 19);
-		panel.add(txtAltura);
-		txtAltura.setColumns(10);
-		
-		txtPiso = new JTextField();
-		txtPiso.setBounds(453, 42, 55, 19);
-		panel.add(txtPiso);
-		txtPiso.setColumns(10);
-		
-		txtDpto = new JTextField();
-		txtDpto.setBounds(562, 42, 55, 19);
-		panel.add(txtDpto);
-		txtDpto.setColumns(10);
+		panel.setLayout(new MigLayout("", "[pref!][185.00px][pref!][57.00px][60.00][60.00]", "[pref!][pref!][pref!][pref!][pref!]"));
 		
 		JLabel lblTipoContacto = new JLabel("Tipo Contacto:");
-		lblTipoContacto.setBounds(12, 13, 118, 15);
-		panel.add(lblTipoContacto);
+		panel.add(lblTipoContacto, "cell 0 0,grow");
 		
 		tipoCombo = new JComboBox<>();
-		tipoCombo.setBounds(167, 6, 164, 24);
-		panel.add(tipoCombo);
+		panel.add(tipoCombo, "cell 1 0,growx,aligny center");
 		
-		lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(367, 97, 70, 15);
-		panel.add(lblEmail);
+				
+				JLabel lblAltura = new JLabel("Altura:");
+				panel.add(lblAltura, "cell 2 0,grow");
+		
+		txtAltura = new JTextField();
+		panel.add(txtAltura, "cell 3 0 3 1,growx");
+		txtAltura.setColumns(10);
+		
+		JLabel lblNombreYApellido = new JLabel("Nombre y apellido:");
+		panel.add(lblNombreYApellido, "cell 0 1,grow");
+		
+		txtNombre = new JTextField();
+		panel.add(txtNombre, "cell 1 1,grow");
+		txtNombre.setColumns(10);
+		
+		JLabel lblPiso = new JLabel("Piso:");
+		panel.add(lblPiso, "cell 2 1,grow");
+		
+		txtPiso = new JTextField();
+		panel.add(txtPiso, "cell 3 1,grow");
+		txtPiso.setColumns(10);
+		
+		JLabel lblDpto = new JLabel("Dpto.:");
+		panel.add(lblDpto, "cell 4 1,grow");
+		
+		txtDpto = new JTextField();
+		panel.add(txtDpto, "cell 5 1,grow");
+		txtDpto.setColumns(10);
+		
+		JLabel lblTelfono = new JLabel("Teléfono:");
+		panel.add(lblTelfono, "cell 0 2,grow");
+		
+		txtTelefono = new JTextField();
+		panel.add(txtTelefono, "cell 1 2,growx,aligny center");
+		txtTelefono.setColumns(10);
+		
+		JLabel lblLocalidad = new JLabel("Localidad: ");
+		panel.add(lblLocalidad, "cell 2 2,grow");
+		
+		localidadCombo = new JComboBox<>();
+		panel.add(localidadCombo, "cell 3 2 3 1,grow");
 		
 		lblCumpleaos = new JLabel("Cumpleaños:");
-		lblCumpleaos.setBounds(12, 96, 100, 15);
-		panel.add(lblCumpleaos);
+		panel.add(lblCumpleaos, "cell 0 3,grow");
+		
+		calendar = new JDateChooser();
+		panel.add(calendar, "cell 1 3,grow");
+		
+		lblEmail = new JLabel("Email:");
+		panel.add(lblEmail, "cell 2 3,grow");
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(453, 100, 164, 19);
-		panel.add(txtEmail);
+		panel.add(txtEmail, "cell 3 3 3 1,grow");
 		txtEmail.setColumns(10);
 		
+		JLabel lblCalle = new JLabel("Calle:");
+		panel.add(lblCalle, "cell 0 4,grow");
+		
+		txtCalle = new JTextField();
+		panel.add(txtCalle, "cell 1 4,grow");
+		txtCalle.setColumns(10);
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tipoCombo, txtNombre, txtTelefono, calendar, txtCalle, txtAltura, txtPiso, txtDpto, localidadCombo, txtEmail, lblTipoContacto, lblNombreYApellido, lblTelfono, lblCumpleaos, lblCalle, lblAltura, lblPiso, lblLocalidad, lblEmail, calendar.getCalendarButton(), lblDpto}));
+		
+		panelButtons = new JPanel();
+		panelButtons.setBounds(5, 185, 638, 44);
+		contentPane.add(panelButtons);
+		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
+		
+		glue = Box.createGlue();
+		panelButtons.add(glue);
+		
+		btnGuardar = new JButton("Guardar");
+		panelButtons.add(btnGuardar);
+		
+		btnAgregarPersona = new JButton("Agregar");
+		panelButtons.add(btnAgregarPersona);
+		
+		Component horizontalStrut = Box.createHorizontalStrut(50);
+		panelButtons.add(horizontalStrut);
+		btnGuardar.setVisible(false);
+		
 		this.setLocationRelativeTo(null);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tipoCombo, txtNombre, txtTelefono, calendar, calendar.getCalendarButton(), txtCalle, txtAltura, txtPiso, txtDpto, localidadCombo, txtEmail, btnGuardar, btnAgregarPersona, contentPane, panel, lblTipoContacto, lblAltura, lblNombreYApellido, lblPiso, lblDpto, lblTelfono, lblLocalidad, lblCumpleaos, lblEmail, lblCalle, panelButtons, glue, horizontalStrut}));
 		
 	}
 	
