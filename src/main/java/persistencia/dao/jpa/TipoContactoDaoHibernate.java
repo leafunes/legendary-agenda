@@ -26,7 +26,7 @@ public class TipoContactoDaoHibernate extends DaoHibernate<TipoContactoDTO> impl
 	}
 	
 	private TipoContactoDaoHibernate(){
-		
+		super();
 	}
 
 	@Override

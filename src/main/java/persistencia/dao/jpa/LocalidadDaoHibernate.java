@@ -25,7 +25,7 @@ public class LocalidadDaoHibernate extends DaoHibernate<LocalidadDTO> implements
 	}
 	
 	private LocalidadDaoHibernate(){
-		
+		super();
 	}
 	
 	@Override

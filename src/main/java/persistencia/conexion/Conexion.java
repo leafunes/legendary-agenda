@@ -1,36 +1,33 @@
 package persistencia.conexion;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.hibernate.Session;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class Conexion 
 {
 	private static Conexion instancia;
-
-	private StandardServiceRegistry registry;
+	
     private SessionFactory factory;
+    private File configuration = new File("hibernate.cfg.xml");
+    
+    private DBCredentialsEditor dbProps = DBCredentialsEditor.getEditor();
 	
 	public Conexion(){
+
+		Configuration c = new Configuration();
+		c.configure(configuration);
 		
-		registry = new StandardServiceRegistryBuilder().configure(new File("hibernate.cfg.xml")).build();
+		String url = "jdbc:mysql://" + dbProps.getIP() + ":" + dbProps.getPuerto() + "/tpi_g7";
 		
-		MetadataSources sources = new MetadataSources(registry);
+		c.setProperty("hibernate.connection.url", url);
+		c.setProperty("hibernate.connection.username", dbProps.getUsuario());
+		c.setProperty("hibernate.connection.password", dbProps.getPass());
 		
-		Metadata metadata = sources.getMetadataBuilder().build();
 	
-    	factory = metadata.getSessionFactoryBuilder().build();
+    	factory = c.buildSessionFactory();
 	}
 	
 	public static Conexion getConexion()   
@@ -42,9 +39,15 @@ public class Conexion
 		return instancia;
 	}
 	
+	public static void resetConexion() throws HibernateException{
+		instancia = new Conexion();
+	}
+	
+	
 	public SessionFactory getSessionFactory(){
 		return factory;
 	}
+	
 	
 	public void cerrar()
 	{

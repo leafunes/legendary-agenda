@@ -8,13 +8,26 @@ import org.hibernate.Transaction;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.DAO;
+import utils.MessageBox;
 
 public abstract class DaoHibernate<T> implements DAO<T>{
 	
 	protected Conexion conexion = Conexion.getConexion();
 	protected SessionFactory sesionFactory = conexion.getSessionFactory();
-	protected Session sesion = sesionFactory.openSession();;
+	protected Session sesion = sesionFactory.openSession();
 	protected Transaction transaction;
+	
+	private MessageBox messageBox = MessageBox.getMessageBox();
+	
+	protected DaoHibernate() {
+		messageBox.suscribirse("newConexion", () -> resetConexion());
+	}
+	
+	private void resetConexion(){
+		conexion = Conexion.getConexion();
+		sesionFactory = conexion.getSessionFactory();
+		sesion = sesionFactory.openSession();
+	}
 
 	@Override
 	public void insert(T toInsert) {

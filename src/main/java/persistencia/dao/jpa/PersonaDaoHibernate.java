@@ -22,7 +22,7 @@ public class PersonaDaoHibernate extends DaoHibernate<PersonaDTO> implements Per
 	}
 	
 	private PersonaDaoHibernate(){
-		
+		super();
 	}
 
 	@Override
