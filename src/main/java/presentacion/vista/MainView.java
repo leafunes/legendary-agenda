@@ -36,6 +36,7 @@ public class MainView
 	private Component glue_2;
 	private Component glue_3;
 	private Component glue_4;
+	private JMenuItem mntmCredenciales;
 	
 	public static MainView getView(){
 		if(instance == null)
@@ -111,6 +112,9 @@ public class MainView
 		
 		mntmTipoContacto = new JMenuItem("Tipos Contacto");
 		mnEditar.add(mntmTipoContacto);
+		
+		mntmCredenciales = new JMenuItem("Credenciales");
+		mnEditar.add(mntmCredenciales);
 
 		frame.setLocationRelativeTo(null);
 	}
@@ -152,6 +156,10 @@ public class MainView
 
 	public JButton getBtnEditar() {
 		return btnEditar;
+	}
+
+	public JMenuItem getMntmCredenciales() {
+		return mntmCredenciales;
 	}
 
 }

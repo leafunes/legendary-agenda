@@ -24,9 +24,10 @@ public class Main
 						+ " y luego la aplicacion iniciará. \n"
 						+ "Esto ultimo podria llevar unos minutos", "Primer inicio", JOptionPane.INFORMATION_MESSAGE);
 			
-				CambiaConfigDBController controller = new CambiaConfigDBController();
+				CambiaConfigDBController controller = CambiaConfigDBController.getController();
 				controller.setCredentials();
 				controller.showView();
+				Utils.getUtils().setFirstTimeFalse();
 				
 			}
 			

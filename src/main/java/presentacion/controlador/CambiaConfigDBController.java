@@ -8,13 +8,21 @@ import presentacion.vista.CambiaConfigDBView;
 
 public class CambiaConfigDBController {
 	
+	private static CambiaConfigDBController insntancia;
+	
 	private CambiaConfigDBView view;
 	private GestorConexionService gestorConexionService = GestorConexionService.getService();
 	
 	private Binder<DBCredentialsDTO> binder;
 	private DBCredentialsDTO credentials;
 	
-	public CambiaConfigDBController() {
+	public static CambiaConfigDBController getController(){
+		if(insntancia == null)
+			insntancia = new CambiaConfigDBController();
+		return insntancia;
+	}
+	
+	private CambiaConfigDBController() {
 		
 		view = new CambiaConfigDBView();
 		binder = new Binder<>();

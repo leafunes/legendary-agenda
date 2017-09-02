@@ -30,7 +30,6 @@ public class GestorConexionService {
 		editor.setPass(credentials.getPass());
 		editor.setPuerto(credentials.getPort());
 		editor.setUsuario(credentials.getUser());
-		System.out.println(credentials.toString());
 		
 		try {
 			Conexion.resetConexion();

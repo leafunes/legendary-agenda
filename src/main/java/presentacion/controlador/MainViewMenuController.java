@@ -9,7 +9,8 @@ public class MainViewMenuController {
 	ListadoLocalidadesController localidadesController = ListadoLocalidadesController.getController();
 
 	ListadoTipoContactoController tipoContactoController = ListadoTipoContactoController.getController();
-
+	
+	CambiaConfigDBController configDBController = CambiaConfigDBController.getController();
 
 	
 	public MainViewMenuController() {
@@ -23,6 +24,8 @@ public class MainViewMenuController {
 		view.getMntmLocalidades().addActionListener(e -> showLocalidadesView());
 
 		view.getMntmTipoContacto().addActionListener(e -> showTipoContactoView());
+		
+		view.getMntmCredenciales().addActionListener(e -> showCambiaCredencialesView());
 	}
 	
 	private void showLocalidadesView(){
@@ -31,6 +34,13 @@ public class MainViewMenuController {
 
 	private void showTipoContactoView(){
 		tipoContactoController.showView();
+	}
+	
+	private void showCambiaCredencialesView(){
+		
+		configDBController.setCredentials();
+		configDBController.showView();
+		
 	}
 
 }

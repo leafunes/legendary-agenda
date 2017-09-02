@@ -41,4 +41,26 @@ public class Utils {
 		
 	}
 
+	public void setFirstTimeFalse() {
+		Properties props = new Properties();
+		
+		try {
+			props.load(new FileInputStream(new File("config.properties")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String isFirst = props.getProperty("isFirst");
+		
+		props.setProperty("isFirst", "false");
+		try {
+			props.store(new FileOutputStream(new File("config.properties")), null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }
