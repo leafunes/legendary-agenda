@@ -22,7 +22,6 @@ import javax.swing.BoxLayout;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.GridLayout;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class AgregaPersonaView extends JDialog 
 {
