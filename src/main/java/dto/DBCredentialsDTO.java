@@ -36,9 +36,4 @@ public class DBCredentialsDTO {
 		this.pass = pass;
 	}
 
-	@Override
-	public String toString() {
-		return "DBCredentialsDTO [ip=" + ip + ", user=" + user + ", port=" + port + ", pass=" + pass + "]";
-	}
-
 }

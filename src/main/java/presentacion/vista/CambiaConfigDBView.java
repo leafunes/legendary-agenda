@@ -20,6 +20,7 @@ public class CambiaConfigDBView extends JDialog{
 		
 		getContentPane().setLayout(null);
 		setSize(new Dimension(400, 400));
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		setModal(true);
 		setResizable(false);

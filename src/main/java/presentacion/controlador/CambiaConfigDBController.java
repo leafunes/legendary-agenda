@@ -1,5 +1,9 @@
 package presentacion.controlador;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JOptionPane;
 
 import dto.DBCredentialsDTO;
@@ -15,6 +19,8 @@ public class CambiaConfigDBController {
 	
 	private Binder<DBCredentialsDTO> binder;
 	private DBCredentialsDTO credentials;
+	
+	private boolean wasClosed = false;
 	
 	public static CambiaConfigDBController getController(){
 		if(insntancia == null)
@@ -38,6 +44,14 @@ public class CambiaConfigDBController {
 		
 		view.getOkBtt().addActionListener(e -> saveCredentials());
 		
+		view.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e){
+				wasClosed = true;
+				super.windowClosing(e);
+			}
+		});
+		
 	}
 	
 	public void setCredentials(){
@@ -56,9 +70,15 @@ public class CambiaConfigDBController {
 		
 		try {
 			gestorConexionService.saveCredentials(credentials);
+			closeView();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(view, "Error en las credenciales", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+		
+	}
+	
+	public boolean wasClosed(){
+		return wasClosed;
 	}
 	
 	public void showView(){
