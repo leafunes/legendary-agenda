@@ -58,25 +58,41 @@ public class DBCredentialsEditor {
 	public String getIP(){
 		loadProps();
 		
-		return props.getProperty("dbip");
+		String prop = props.getProperty("dbip");
+		
+		if(prop == null)
+			return "";
+		return prop;
 	}
 	
 	public String getPuerto(){
 		loadProps();
 		
-		return props.getProperty("dbport");
+		String prop = props.getProperty("dbport");
+		
+		if(prop == null)
+			return "";
+		return prop;
 	}
 	
 	public String getUsuario(){
 		loadProps();
 		
-		return props.getProperty("dbuser");
+		String prop = props.getProperty("dbuser");
+		
+		if(prop == null)
+			return "";
+		return prop;
 	}
 	
 	public String getPass(){
 		loadProps();
 		
-		return props.getProperty("dbpass");
+		String prop = props.getProperty("dbpass");
+		
+		if(prop == null)
+			return "";
+		return prop;
 	}
 	
 	private void loadProps(){
