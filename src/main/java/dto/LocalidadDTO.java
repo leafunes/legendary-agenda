@@ -16,6 +16,7 @@ public class LocalidadDTO {
 	
 	private String nombre;
 	
+	@SuppressWarnings("unused")
 	private LocalidadDTO(){
 		
 	}

@@ -1,7 +1,5 @@
 package presentacion.table;
 
-import javax.swing.JTable;
-
 import dto.PersonaDTO;
 
 public class PersonasTableModel extends BaseTableModel<PersonaDTO>{

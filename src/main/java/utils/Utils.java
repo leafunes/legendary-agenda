@@ -7,11 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import javax.imageio.stream.FileImageInputStream;
-
 public class Utils {
 	
 	private static Utils instancia;
+	private static File propsFile = new File("config" + File.separatorChar + "config.properties");
 	
 	public static Utils getUtils(){
 		if(instancia == null)
@@ -27,13 +26,13 @@ public class Utils {
 		
 		Properties props = new Properties();
 		
-		props.load(new FileInputStream(new File("config.properties")));
+		props.load(new FileInputStream(propsFile));
 		
 		String isFirst = props.getProperty("isFirst");
 		
 		if(isFirst == null){
 			props.setProperty("isFirst", "true");
-			props.store(new FileOutputStream(new File("config.properties")), null);
+			props.store(new FileOutputStream(propsFile), null);
 			return true;
 		}
 		
@@ -45,17 +44,15 @@ public class Utils {
 		Properties props = new Properties();
 		
 		try {
-			props.load(new FileInputStream(new File("config.properties")));
+			props.load(new FileInputStream(propsFile));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String isFirst = props.getProperty("isFirst");
-		
 		props.setProperty("isFirst", "false");
 		try {
-			props.store(new FileOutputStream(new File("config.properties")), null);
+			props.store(new FileOutputStream(propsFile), null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

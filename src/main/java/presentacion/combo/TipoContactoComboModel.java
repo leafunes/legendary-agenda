@@ -6,6 +6,11 @@ import dto.TipoContactoDTO;
 
 public class TipoContactoComboModel extends BaseComboBoxModel<TipoContactoDTO>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void actualize(List<TipoContactoDTO> list) {
 		this.removeAllElements();

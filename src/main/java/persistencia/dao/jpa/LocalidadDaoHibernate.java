@@ -1,17 +1,12 @@
 package persistencia.dao.jpa;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Criteria;
 import org.hibernate.cfg.NotYetImplementedException;
 
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
-import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDaoHibernate extends DaoHibernate<LocalidadDTO> implements LocalidadDAO{
@@ -33,6 +28,7 @@ public class LocalidadDaoHibernate extends DaoHibernate<LocalidadDTO> implements
 		throw new NotYetImplementedException();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<LocalidadDTO> readAll() {
 		initTransaction();

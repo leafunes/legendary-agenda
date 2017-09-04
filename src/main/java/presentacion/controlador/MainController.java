@@ -1,14 +1,12 @@
 package presentacion.controlador;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
+
+import dto.PersonaDTO;
 import modelo.PersonaService;
 import presentacion.reportes.ReporteSignoChino;
 import presentacion.table.PersonasTableModel;
-import presentacion.vista.AgregaPersonaView;
 import presentacion.vista.MainView;
-import dto.PersonaDTO;
 
 public class MainController{
 		private MainView vista;

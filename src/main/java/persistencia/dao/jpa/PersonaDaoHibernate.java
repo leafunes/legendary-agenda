@@ -35,6 +35,7 @@ public class PersonaDaoHibernate extends DaoHibernate<PersonaDTO> implements Per
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PersonaDTO> getAllWith(TipoContactoDTO contacto) {
 
@@ -49,6 +50,7 @@ public class PersonaDaoHibernate extends DaoHibernate<PersonaDTO> implements Per
 		return query.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PersonaDTO> getAllWith(LocalidadDTO localidad) {
 		
@@ -66,6 +68,7 @@ public class PersonaDaoHibernate extends DaoHibernate<PersonaDTO> implements Per
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PersonaDTO> readAll() {
 		

@@ -1,15 +1,16 @@
 package presentacion.combo;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.DefaultComboBoxModel;
 
 import dto.LocalidadDTO;
 
 public class LocalidadComboModel extends BaseComboBoxModel<LocalidadDTO>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void actualize(List<LocalidadDTO> list){
 		this.removeAllElements();
 		

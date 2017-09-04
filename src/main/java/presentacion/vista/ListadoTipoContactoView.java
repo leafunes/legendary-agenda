@@ -1,13 +1,25 @@
 package presentacion.vista;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 
 public class ListadoTipoContactoView extends JDialog {
 
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JTable table;
     private JButton btnAgregar;
     private JButton btnBorrar;

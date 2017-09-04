@@ -1,9 +1,5 @@
 package presentacion.controlador;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 import org.joda.time.DateTime;

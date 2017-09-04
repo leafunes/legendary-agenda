@@ -1,69 +1,66 @@
 package presentacion.vista;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import java.awt.Dimension;
 
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import net.miginfocom.swing.MigLayout;
 
 public class CambiaConfigDBView extends JDialog{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField ipTxt;
 	private JTextField puertoTxt;
 	private JTextField usuarioTxt;
 	private JPasswordField contraTxt;
 	private JButton okBtt;
+	
 	public CambiaConfigDBView() {
-		
-		getContentPane().setLayout(null);
-		setSize(new Dimension(400, 400));
+		setSize(new Dimension(300, 200));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		setModal(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		getContentPane().setLayout(new MigLayout("", "[][101px][128.00px][]", "[19px][19px][19px][19px][25px][]"));
 		
 		JLabel lblIp = new JLabel("Ip:");
-		lblIp.setBounds(23, 31, 70, 15);
-		getContentPane().add(lblIp);
+		getContentPane().add(lblIp, "cell 1 0,growx,aligny center");
 		
 		JLabel lblPuerto = new JLabel("Puerto:");
-		lblPuerto.setBounds(23, 58, 70, 15);
-		getContentPane().add(lblPuerto);
+		getContentPane().add(lblPuerto, "cell 1 1,alignx left,aligny center");
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(23, 85, 70, 15);
-		getContentPane().add(lblUsuario);
+		getContentPane().add(lblUsuario, "cell 1 2,alignx left,aligny center");
 		
 		JLabel lblContrasea = new JLabel("Contraseña:");
-		lblContrasea.setBounds(23, 112, 101, 15);
-		getContentPane().add(lblContrasea);
+		getContentPane().add(lblContrasea, "cell 1 3,growx,aligny center");
 		
 		okBtt = new JButton("Ok");
-		okBtt.setBounds(232, 238, 117, 25);
-		getContentPane().add(okBtt);
+		getContentPane().add(okBtt, "cell 2 4,alignx center,aligny top");
 		
 		ipTxt = new JTextField();
-		ipTxt.setBounds(75, 29, 114, 19);
-		getContentPane().add(ipTxt);
+		getContentPane().add(ipTxt, "cell 2 0,growx,aligny top");
 		ipTxt.setColumns(10);
 		
 		puertoTxt = new JTextField();
-		puertoTxt.setBounds(85, 58, 114, 19);
-		getContentPane().add(puertoTxt);
+		getContentPane().add(puertoTxt, "cell 2 1,growx,aligny top");
 		puertoTxt.setColumns(10);
 		
 		usuarioTxt = new JTextField();
-		usuarioTxt.setBounds(95, 83, 114, 19);
-		getContentPane().add(usuarioTxt);
+		getContentPane().add(usuarioTxt, "cell 2 2,growx,aligny top");
 		usuarioTxt.setColumns(10);
 		
 		contraTxt = new JPasswordField();
-		contraTxt.setBounds(124, 110, 85, 19);
-		getContentPane().add(contraTxt);
+		getContentPane().add(contraTxt, "cell 2 3,growx,aligny top");
+		
+		
 	}
 	public JTextField getIpTxt() {
 		return ipTxt;
@@ -84,4 +81,5 @@ public class CambiaConfigDBView extends JDialog{
 	public void showView() {
 		this.setVisible(true);
 	}
+
 }

@@ -1,14 +1,10 @@
 package presentacion.controlador;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import dto.LocalidadDTO;
-import dto.PersonaDTO;
 import modelo.LocalidadService;
-import modelo.PersonaService;
 import presentacion.vista.AgregaLocalidadView;
-import presentacion.vista.AgregaPersonaView;
 
 public class AgregaLocalidadController {
 

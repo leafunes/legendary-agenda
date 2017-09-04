@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.List;
 
-import dto.PersonaDTO;
 import persistencia.dao.interfaz.DAO;
 
 public class BaseService <DTO>{

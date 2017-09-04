@@ -5,13 +5,9 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import org.hibernate.HibernateException;
-import org.hibernate.exception.GenericJDBCException;
 
-import modelo.PersonaService;
 import presentacion.controlador.CambiaConfigDBController;
 import presentacion.controlador.MainController;
-import presentacion.vista.CambiaConfigDBView;
-import presentacion.vista.MainView;
 import utils.Utils;
 
 
@@ -39,6 +35,7 @@ public class Main
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Error en las configuraciones"
 						+ ". Contacte al administrador del sistema", "Error critico", JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
 			}
 				
 		}

@@ -2,7 +2,6 @@ package modelo;
 
 
 import dto.LocalidadDTO;
-import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.jpa.LocalidadDaoHibernate;

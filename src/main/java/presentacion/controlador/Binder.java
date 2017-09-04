@@ -2,10 +2,8 @@ package presentacion.controlador;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Binder<T> {
@@ -14,7 +12,6 @@ public class Binder<T> {
 	
 	private Map<String, Supplier<Object>> getters;
 	private Map<String, Consumer<Object>> setters;
-	private Map<String, Condition> conditions;
 	private T objective;
 
 	public Binder() {

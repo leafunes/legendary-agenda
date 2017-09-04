@@ -11,7 +11,7 @@ public class Conexion
 	private static Conexion instancia;
 	
     private SessionFactory factory;
-    private File configuration = new File("hibernate.cfg.xml");
+    private File configuration = new File("config" + File.separatorChar + "hibernate.cfg.xml");
     
     private DBCredentialsEditor dbProps = DBCredentialsEditor.getEditor();
 	

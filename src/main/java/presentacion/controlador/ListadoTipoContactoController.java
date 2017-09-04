@@ -1,13 +1,9 @@
 package presentacion.controlador;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import modelo.LocalidadService;
 import modelo.TipoContactoService;
-import presentacion.table.LocalidadesTableModel;
 import presentacion.table.TipoContactoTableModel;
-import presentacion.vista.ListadoLocalidadesView;
 import presentacion.vista.ListadoTipoContactoView;
 
 public class ListadoTipoContactoController {

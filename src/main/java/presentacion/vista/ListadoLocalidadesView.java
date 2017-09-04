@@ -1,21 +1,23 @@
 package presentacion.vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Component;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.BoxLayout;
-import java.awt.Component;
-import javax.swing.Box;
+import javax.swing.border.EmptyBorder;
 
 public class ListadoLocalidadesView extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private JButton btnAgregar;

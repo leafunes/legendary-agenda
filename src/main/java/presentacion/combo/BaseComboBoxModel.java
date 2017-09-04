@@ -6,10 +6,12 @@ import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 
-import dto.LocalidadDTO;
-
 public abstract class BaseComboBoxModel<T> extends DefaultComboBoxModel<String>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Map<String, T> values;
 	
 	public BaseComboBoxModel() {
