@@ -19,9 +19,16 @@ public class MainController{
 		private AgregaPersonaController agregaPersonaController;
 		private MainViewMenuController menuController;
 		
-		public MainController(MainView vista, PersonaService agenda)
-		{
-			this.vista = vista;
+		private static MainController instancia;
+		
+		public static MainController getController(){
+			if(instancia == null)
+				instancia = new MainController();
+			return instancia;
+		}
+		
+		private MainController(){
+			this.vista = MainView.getView();
 			this.tableModel = new PersonasTableModel();
 			this.agregaPersonaController = new AgregaPersonaController();
 			this.menuController = new MainViewMenuController();
@@ -32,7 +39,7 @@ public class MainController{
 			this.vista.getBtnEditar().addActionListener(e -> editarContacto());
 			this.vista.getBtnReporte().addActionListener(e -> mostrarReporte());
 			
-			this.agenda = agenda;
+			this.agenda = PersonaService.getService();
 		}
 		
 		public void showView(){

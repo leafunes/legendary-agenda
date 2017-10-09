@@ -64,17 +64,48 @@ public class CambiaConfigDBController {
 	}
 	
 	private void saveCredentials(){
-		
-		binder.setObjective(credentials);
-		binder.fillBean();
-		
-		try {
-			gestorConexionService.saveCredentials(credentials);
-			closeView();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(view, "Error en las credenciales", "Error", JOptionPane.ERROR_MESSAGE);
+		if(isFieldsOk()){
+			binder.setObjective(credentials);
+			binder.fillBean();
+			
+			try {
+				gestorConexionService.saveCredentials(credentials);
+				closeView();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(view, "Error en las credenciales", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
+	}
+	
+	private boolean isFieldsOk(){
+		
+		boolean emptys = view.getIpTxt().getText().isEmpty();
+		emptys |= view.getUsuarioTxt().getText().isEmpty();
+		emptys |= view.getPuertoTxt().getText().isEmpty();
+		
+		if(emptys){
+			
+			JOptionPane.showMessageDialog(view, "Faltan rellenar campos", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}
+		
+		if(!view.getIpTxt().getText().matches("([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})")){
+			//verifica si es un ip valido
+			JOptionPane.showMessageDialog(view, "IP invalido", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}
+		
+		if(!view.getPuertoTxt().getText().matches("(\\d)*")){
+			//verifica si es un ip valido
+			JOptionPane.showMessageDialog(view, "Puerto invalido", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public boolean wasClosed(){
