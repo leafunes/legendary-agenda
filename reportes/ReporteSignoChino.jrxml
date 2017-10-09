@@ -186,7 +186,7 @@
 				<reportElement x="0" y="0" width="555" height="370" uuid="73eafdea-387e-4b86-91d7-2aac99144134"/>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="0" y="70" width="555" height="300" uuid="e3561f8b-91e6-41b4-8a40-f5a3a5b78e9c"/>
+						<reportElement x="0" y="70" width="555" height="300" uuid="ccbbd5f8-2482-4525-a76f-abaebabc2bae"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
@@ -194,9 +194,8 @@
 					<pieDataset maxCount="12">
 						<keyExpression><![CDATA[$F{signoStr}]]></keyExpression>
 						<valueExpression><![CDATA[$V{Group1_COUNT}]]></valueExpression>
-						<labelExpression><![CDATA[$V{Group1_COUNT}.toString()]]></labelExpression>
 					</pieDataset>
-					<piePlot>
+					<piePlot labelFormat="{2}">
 						<plot/>
 						<itemLabel/>
 					</piePlot>

@@ -1,10 +1,8 @@
 package presentacion.vista;
 
 
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.Dimension;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -15,13 +13,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.*;
 
-import presentacion.controlador.MainController;
 import javax.swing.JComboBox;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.BoxLayout;
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.GridLayout;
 
 public class AgregaPersonaView extends JDialog 
 {
